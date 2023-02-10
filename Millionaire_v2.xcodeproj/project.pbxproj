@@ -13,7 +13,6 @@
 		10E4A3E52996575B0010A3A7 /* GamePlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E4A3E42996575B0010A3A7 /* GamePlayView.swift */; };
 		10E4A3E829965C2D0010A3A7 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E4A3E729965C2D0010A3A7 /* TimerView.swift */; };
 		10E4A3EA29965D330010A3A7 /* UIColor + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E4A3E929965D330010A3A7 /* UIColor + ext.swift */; };
-		10E4A3F1299678FE0010A3A7 /* GameBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E4A3F0299678FE0010A3A7 /* GameBrain.swift */; };
 		6C24AB11299633FE004CC605 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C24AB10299633FE004CC605 /* AppDelegate.swift */; };
 		6C24AB13299633FE004CC605 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C24AB12299633FE004CC605 /* SceneDelegate.swift */; };
 		6C24AB15299633FE004CC605 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C24AB14299633FE004CC605 /* ViewController.swift */; };
@@ -28,7 +27,6 @@
 		10E4A3E42996575B0010A3A7 /* GamePlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayView.swift; sourceTree = "<group>"; };
 		10E4A3E729965C2D0010A3A7 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		10E4A3E929965D330010A3A7 /* UIColor + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + ext.swift"; sourceTree = "<group>"; };
-		10E4A3F0299678FE0010A3A7 /* GameBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameBrain.swift; path = ../../../../../../GameBrain.swift; sourceTree = "<group>"; };
 		6C24AB0D299633FE004CC605 /* Millionaire_v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Millionaire_v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C24AB10299633FE004CC605 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6C24AB12299633FE004CC605 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,14 +89,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		10E4A3EF299678EC0010A3A7 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				10E4A3F0299678FE0010A3A7 /* GameBrain.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		6C24AB04299633FE004CC605 = {
 			isa = PBXGroup;
 			children = (
@@ -118,7 +108,6 @@
 		6C24AB0F299633FE004CC605 /* Millionaire_v2 */ = {
 			isa = PBXGroup;
 			children = (
-				10E4A3EF299678EC0010A3A7 /* Model */,
 				10E4A3DB2996515D0010A3A7 /* Helper */,
 				6C24AB26299639A7004CC605 /* Application */,
 				6C24AB2929963AA1004CC605 /* View */,
@@ -232,7 +221,6 @@
 				10E4A3EA29965D330010A3A7 /* UIColor + ext.swift in Sources */,
 				10E4A3DA29964B170010A3A7 /* Resources.swift in Sources */,
 				10E4A3E3299657410010A3A7 /* GamePlayController.swift in Sources */,
-				10E4A3F1299678FE0010A3A7 /* GameBrain.swift in Sources */,
 				6C24AB11299633FE004CC605 /* AppDelegate.swift in Sources */,
 				6C24AB13299633FE004CC605 /* SceneDelegate.swift in Sources */,
 				10E4A3DD2996518D0010A3A7 /* UIView + ext.swift in Sources */,

@@ -10,7 +10,6 @@ import UIKit
 class TimerView: UIView {
     
     let spacing: CGFloat = 8
-    let offset: CGFloat = 10
     
     private let timerLabel = UILabel()
     private let timerImage = UIImageView()
@@ -29,6 +28,10 @@ class TimerView: UIView {
         setupTimerLabel()
     }
     
+    func configureTimerLabel(_ time: Int) {
+        timerLabel.text = "\(time)"
+    }
+    
     private func setupView() {
         NSLayoutConstraint.activate([
             self.heightAnchor.constraint(equalToConstant: 50)
@@ -44,7 +47,7 @@ class TimerView: UIView {
         
         NSLayoutConstraint.activate([
             containerView.heightAnchor.constraint(equalTo: self.heightAnchor),
-            containerView.widthAnchor.constraint(equalToConstant: 100),
+            containerView.widthAnchor.constraint(equalToConstant: 120),
             containerView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
     }
@@ -58,10 +61,10 @@ class TimerView: UIView {
         containerView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: offset),
-            stackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: offset),
-            stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -offset),
-            stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -offset)
+            stackView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
+            stackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 13),
+            stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -13),
+            stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10)
         ])
     }
     
@@ -77,7 +80,7 @@ class TimerView: UIView {
         timerLabel.text = "05"
         timerLabel.font = UIFont.boldSystemFont(ofSize: 30)
         timerLabel.textColor = .red2
-        timerLabel.textAlignment = .right
+        timerLabel.textAlignment = .center
         
         stackView.addArrangedSubview(timerLabel)
     }

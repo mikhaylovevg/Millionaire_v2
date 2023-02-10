@@ -18,6 +18,7 @@ class GamePlayView: UIView {
     
     
     // MARK: - Canstants and UI
+    private let backgroundImageView = UIImageView()
     
     private let stackViewMain = UIStackView()
     private let stackViewTop = UIStackView()
@@ -55,11 +56,11 @@ class GamePlayView: UIView {
     }
     
     /// установить значение таймера в UILabel
-//    func configureTimerLabel(_ timer: Int) {
-//        timerLabel.text = "\(timer)"
-//
-//        // TODO: над будет подумать какой формат принимает
-//    }
+    func configureTimerLabel(_ timer: Int) {
+        timerView.configureTimerLabel(timer)
+
+        // TODO: над будет подумать какой формат принимает
+    }
     
     init() {
         super.init(frame: .zero)
@@ -73,8 +74,9 @@ class GamePlayView: UIView {
     
     private func setupView() {
         // view setting
-        self.backgroundColor = .systemBlue
-        self.translatesAutoresizingMaskIntoConstraints = false
+        self.backgroundColor = .white
+        
+        setupBackgroundImageView()
         
         setupStackViewMain()
         
@@ -83,8 +85,7 @@ class GamePlayView: UIView {
         setupQuestionNumberLabel()
         setupShoeTableQuestionsButton()
         
-//        setupTimerLabel()
-        setupTimerView() // timer view
+        setupTimerView()
         setupQuestionLabel()
         
         setupAnswerButtons()
@@ -104,6 +105,21 @@ class GamePlayView: UIView {
             stackViewMain.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             
             
+        ])
+    }
+    
+    private func setupBackgroundImageView() {
+        backgroundImageView.image = UIImage(named: R.Images.background)
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.addSubview(backgroundImageView)
+        
+        NSLayoutConstraint.activate([
+            backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundImageView.leftAnchor.constraint(equalTo: leftAnchor),
+            backgroundImageView.rightAnchor.constraint(equalTo: rightAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
@@ -153,23 +169,6 @@ class GamePlayView: UIView {
         stackViewMain.addArrangedSubview(timerView)
     }
     
-//    private func setupTimerLabel() {
-//        timerLabel.text = "05"
-//        timerLabel.font = UIFont.boldSystemFont(ofSize: 30)
-//        timerLabel.textColor = .red.withAlphaComponent(0.8)
-//        timerLabel.textAlignment = .center
-//        timerLabel.backgroundColor = .red.withAlphaComponent(0.3)
-//
-//        stackViewMain.addArrangedSubview(timerLabel)
-//
-//        NSLayoutConstraint.activate([
-//            timerLabel.heightAnchor.constraint(equalToConstant: 50),
-//            timerLabel.widthAnchor.constraint(equalToConstant: 200)
-//        ])
-//
-//        // TODO: нужно делать отдельную вьюшку для этой штуки. Пока тусть так
-//    }
-    
     private func setupQuestionLabel() {
         questionLabel.text = "Успеет ли команда номер 19 закончить проэкт в срок?"
         questionLabel.font = UIFont.boldSystemFont(ofSize: 30)
@@ -192,7 +191,13 @@ class GamePlayView: UIView {
         
         for _ in 0...3 {
             let button = getButton()
-            button.layer.cornerRadius = 30
+            let image = UIImage(named: R.Images.AnswerButton.blue)
+            button.setBackgroundImage(image, for: .normal)
+            
+            button.layer.cornerRadius = 18
+            button.layer.borderWidth = 3
+            button.layer.borderColor = UIColor.gray.cgColor
+            
             stackViewContainerAnswers.addArrangedSubview(button)
             
             NSLayoutConstraint.activate([
@@ -206,7 +211,11 @@ class GamePlayView: UIView {
         let button = UIButton(type: .system)
         button.setTitle( "Answer ", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .blue
+        
+        button.layer.shadowColor = UIColor.darkGray.cgColor
+        button.layer.shadowRadius = 4
+        button.layer.shadowOffset = .init(width: 5, height: 5)
+        button.layer.shadowOpacity = 10
         
         return button
     }
@@ -220,17 +229,15 @@ class GamePlayView: UIView {
     }
     
     private func setupClueButtons() {
-        for _ in 0...2 {
+        for index in 0...2 {
            let button = getButton()
-            button.layer.cornerRadius = 30
+            button.setBackgroundImage(getImage(index), for: .normal)
             button.setTitle(nil, for: .normal)
-            button.setImage(.getImageSymbolForButton(with: 20, and: "person.fill"), for: .normal)
-            button.tintColor = .white
             
             stackViewBottom.addArrangedSubview(button)
             
             NSLayoutConstraint.activate([
-                button.heightAnchor.constraint(equalToConstant: 60),
+                button.heightAnchor.constraint(equalToConstant: 76),
                 button.widthAnchor.constraint(equalToConstant: 100)
             ])
             
@@ -246,6 +253,15 @@ class GamePlayView: UIView {
         stackViewMain.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(stackViewMain)
+    }
+    
+    private func getImage(_ index: Int) -> UIImage? {
+        switch index {
+        case 0: return UIImage(named: R.Images.ClueButton.fiftyFifty)
+        case 1: return UIImage(named: R.Images.ClueButton.helpAudience)
+        case 2: return UIImage(named: R.Images.ClueButton.callFriend)
+        default: return nil
+        }
     }
     
     
