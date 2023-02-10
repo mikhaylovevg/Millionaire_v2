@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0086989E2996C14B00203CC0 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086989D2996C14B00203CC0 /* GameOverView.swift */; };
+		008698A02996C1B400203CC0 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086989F2996C1B400203CC0 /* GameOverViewController.swift */; };
 		10E4A3DA29964B170010A3A7 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E4A3D929964B170010A3A7 /* Resources.swift */; };
 		10E4A3DD2996518D0010A3A7 /* UIView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E4A3DC2996518D0010A3A7 /* UIView + ext.swift */; };
 		10E4A3E3299657410010A3A7 /* GamePlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E4A3E2299657410010A3A7 /* GamePlayController.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0086989D2996C14B00203CC0 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		0086989F2996C1B400203CC0 /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		10E4A3D929964B170010A3A7 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		10E4A3DC2996518D0010A3A7 /* UIView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + ext.swift"; sourceTree = "<group>"; };
 		10E4A3E2299657410010A3A7 /* GamePlayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayController.swift; sourceTree = "<group>"; };
@@ -47,6 +51,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0086989B2996C10100203CC0 /* GameOverView */ = {
+			isa = PBXGroup;
+			children = (
+				0086989D2996C14B00203CC0 /* GameOverView.swift */,
+			);
+			path = GameOverView;
+			sourceTree = "<group>";
+		};
+		0086989C2996C11700203CC0 /* GameOverController */ = {
+			isa = PBXGroup;
+			children = (
+				0086989F2996C1B400203CC0 /* GameOverViewController.swift */,
+			);
+			path = GameOverController;
+			sourceTree = "<group>";
+		};
 		10E4A3D829964AFD0010A3A7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +152,7 @@
 		6C24AB2929963AA1004CC605 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0086989B2996C10100203CC0 /* GameOverView */,
 				10E4A3E1299657210010A3A7 /* GamePlayView */,
 			);
 			path = View;
@@ -140,6 +161,7 @@
 		6C24AB2A29963ABA004CC605 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0086989C2996C11700203CC0 /* GameOverController */,
 				10E4A3E02996570E0010A3A7 /* GamePlayController */,
 				6C24AB14299633FE004CC605 /* ViewController.swift */,
 			);
@@ -215,12 +237,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0086989E2996C14B00203CC0 /* GameOverView.swift in Sources */,
 				10E4A3E829965C2D0010A3A7 /* TimerView.swift in Sources */,
 				10E4A3E52996575B0010A3A7 /* GamePlayView.swift in Sources */,
 				6C24AB15299633FE004CC605 /* ViewController.swift in Sources */,
 				10E4A3EA29965D330010A3A7 /* UIColor + ext.swift in Sources */,
 				10E4A3DA29964B170010A3A7 /* Resources.swift in Sources */,
 				10E4A3E3299657410010A3A7 /* GamePlayController.swift in Sources */,
+				008698A02996C1B400203CC0 /* GameOverViewController.swift in Sources */,
 				6C24AB11299633FE004CC605 /* AppDelegate.swift in Sources */,
 				6C24AB13299633FE004CC605 /* SceneDelegate.swift in Sources */,
 				10E4A3DD2996518D0010A3A7 /* UIView + ext.swift in Sources */,
