@@ -18,6 +18,9 @@ enum R {
     }
     
     enum Images {
+        
+        static let background = "Background"
+        
         enum GamePlay{
             static let timerSystemImage = "stopwatch.fill"
         }

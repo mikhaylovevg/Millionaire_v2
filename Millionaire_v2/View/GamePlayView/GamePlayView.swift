@@ -18,6 +18,7 @@ class GamePlayView: UIView {
     
     
     // MARK: - Canstants and UI
+    private let backgroundImageView = UIImageView()
     
     private let stackViewMain = UIStackView()
     private let stackViewTop = UIStackView()
@@ -55,11 +56,11 @@ class GamePlayView: UIView {
     }
     
     /// установить значение таймера в UILabel
-//    func configureTimerLabel(_ timer: Int) {
-//        timerLabel.text = "\(timer)"
-//
-//        // TODO: над будет подумать какой формат принимает
-//    }
+    func configureTimerLabel(_ timer: Int) {
+        timerView.configureTimerLabel(timer)
+
+        // TODO: над будет подумать какой формат принимает
+    }
     
     init() {
         super.init(frame: .zero)
@@ -73,8 +74,9 @@ class GamePlayView: UIView {
     
     private func setupView() {
         // view setting
-        self.backgroundColor = .systemBlue
-        self.translatesAutoresizingMaskIntoConstraints = false
+        self.backgroundColor = .white
+        
+        setupBackgroundImageView()
         
         setupStackViewMain()
         
@@ -83,8 +85,7 @@ class GamePlayView: UIView {
         setupQuestionNumberLabel()
         setupShoeTableQuestionsButton()
         
-//        setupTimerLabel()
-        setupTimerView() // timer view
+        setupTimerView()
         setupQuestionLabel()
         
         setupAnswerButtons()
@@ -104,6 +105,21 @@ class GamePlayView: UIView {
             stackViewMain.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             
             
+        ])
+    }
+    
+    private func setupBackgroundImageView() {
+        backgroundImageView.image = UIImage(named: R.Images.background)
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.addSubview(backgroundImageView)
+        
+        NSLayoutConstraint.activate([
+            backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundImageView.leftAnchor.constraint(equalTo: leftAnchor),
+            backgroundImageView.rightAnchor.constraint(equalTo: rightAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
@@ -152,23 +168,6 @@ class GamePlayView: UIView {
     private func setupTimerView() {
         stackViewMain.addArrangedSubview(timerView)
     }
-    
-//    private func setupTimerLabel() {
-//        timerLabel.text = "05"
-//        timerLabel.font = UIFont.boldSystemFont(ofSize: 30)
-//        timerLabel.textColor = .red.withAlphaComponent(0.8)
-//        timerLabel.textAlignment = .center
-//        timerLabel.backgroundColor = .red.withAlphaComponent(0.3)
-//
-//        stackViewMain.addArrangedSubview(timerLabel)
-//
-//        NSLayoutConstraint.activate([
-//            timerLabel.heightAnchor.constraint(equalToConstant: 50),
-//            timerLabel.widthAnchor.constraint(equalToConstant: 200)
-//        ])
-//
-//        // TODO: нужно делать отдельную вьюшку для этой штуки. Пока тусть так
-//    }
     
     private func setupQuestionLabel() {
         questionLabel.text = "Успеет ли команда номер 19 закончить проэкт в срок?"
