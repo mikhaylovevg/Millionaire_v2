@@ -5,4 +5,19 @@
 //  Created by Павел Грицков on 10.02.23.
 //
 
-import Foundation
+import UIKit
+
+/*
+ здесь граняться ресурсы проэкста
+ к ним будет простой доступ через R.Strings. / R.Images
+ */
+
+enum R {
+    enum Strings {
+        
+    }
+    
+    enum Images {
+        
+    }
+}
