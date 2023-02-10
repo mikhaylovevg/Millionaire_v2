@@ -56,15 +56,47 @@
 		6C24AB0F299633FE004CC605 /* Millionaire_v2 */ = {
 			isa = PBXGroup;
 			children = (
-				6C24AB10299633FE004CC605 /* AppDelegate.swift */,
-				6C24AB12299633FE004CC605 /* SceneDelegate.swift */,
+				6C24AB26299639A7004CC605 /* Application */,
 				6C24AB14299633FE004CC605 /* ViewController.swift */,
 				6C24AB16299633FE004CC605 /* Main.storyboard */,
 				6C24AB1929963400004CC605 /* Assets.xcassets */,
+				6C24AB28299639D3004CC605 /* Model */,
 				6C24AB1B29963400004CC605 /* LaunchScreen.storyboard */,
 				6C24AB1E29963400004CC605 /* Info.plist */,
 			);
 			path = Millionaire_v2;
+			sourceTree = "<group>";
+		};
+		6C24AB26299639A7004CC605 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				6C24AB2A29963ABA004CC605 /* Controller */,
+				6C24AB2929963AA1004CC605 /* View */,
+				6C24AB10299633FE004CC605 /* AppDelegate.swift */,
+				6C24AB12299633FE004CC605 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		6C24AB28299639D3004CC605 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6C24AB2929963AA1004CC605 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6C24AB2A29963ABA004CC605 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
