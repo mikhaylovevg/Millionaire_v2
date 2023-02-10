@@ -10,11 +10,11 @@ import UIKit
 extension UIColor {
     
     static var red5: UIColor {
-        #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
+        #colorLiteral(red: 0.9506267905, green: 0, blue: 0, alpha: 0.3036089086)
     }
     
     static var red2: UIColor {
-        #colorLiteral(red: 0.521568656, green: 0.1098039225, blue: 0.05098039284, alpha: 1)
+        #colorLiteral(red: 0.9506267905, green: 0, blue: 0, alpha: 1)
     }
     
 }

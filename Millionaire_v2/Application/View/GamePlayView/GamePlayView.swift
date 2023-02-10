@@ -26,7 +26,8 @@ class GamePlayView: UIView {
     private let questionNumberLabel = UILabel()
     let showTableQuestionsButton = UIButton()
     
-    private let timerLabel = UILabel()
+//    private let timerLabel = UILabel()
+    private let timerView = TimerView()
     private let questionLabel = UILabel()
     
     private let stackViewContainerAnswers = UIStackView()
@@ -54,11 +55,11 @@ class GamePlayView: UIView {
     }
     
     /// установить значение таймера в UILabel
-    func configureTimerLabel(_ timer: Int) {
-        timerLabel.text = "\(timer)"
-        
-        // TODO: над будет подумать какой формат принимает
-    }
+//    func configureTimerLabel(_ timer: Int) {
+//        timerLabel.text = "\(timer)"
+//
+//        // TODO: над будет подумать какой формат принимает
+//    }
     
     init() {
         super.init(frame: .zero)
@@ -82,7 +83,8 @@ class GamePlayView: UIView {
         setupQuestionNumberLabel()
         setupShoeTableQuestionsButton()
         
-        setupTimerLabel()
+//        setupTimerLabel()
+        setupTimerView() // timer view
         setupQuestionLabel()
         
         setupAnswerButtons()
@@ -147,22 +149,26 @@ class GamePlayView: UIView {
         ])
     }
     
-    private func setupTimerLabel() {
-        timerLabel.text = "05"
-        timerLabel.font = UIFont.boldSystemFont(ofSize: 30)
-        timerLabel.textColor = .red.withAlphaComponent(0.8)
-        timerLabel.textAlignment = .center
-        timerLabel.backgroundColor = .red.withAlphaComponent(0.3)
-        
-        stackViewMain.addArrangedSubview(timerLabel)
-        
-        NSLayoutConstraint.activate([
-            timerLabel.heightAnchor.constraint(equalToConstant: 50),
-            timerLabel.widthAnchor.constraint(equalToConstant: 200)
-        ])
-        
-        // TODO: нужно делать отдельную вьюшку для этой штуки. Пока тусть так
+    private func setupTimerView() {
+        stackViewMain.addArrangedSubview(timerView)
     }
+    
+//    private func setupTimerLabel() {
+//        timerLabel.text = "05"
+//        timerLabel.font = UIFont.boldSystemFont(ofSize: 30)
+//        timerLabel.textColor = .red.withAlphaComponent(0.8)
+//        timerLabel.textAlignment = .center
+//        timerLabel.backgroundColor = .red.withAlphaComponent(0.3)
+//
+//        stackViewMain.addArrangedSubview(timerLabel)
+//
+//        NSLayoutConstraint.activate([
+//            timerLabel.heightAnchor.constraint(equalToConstant: 50),
+//            timerLabel.widthAnchor.constraint(equalToConstant: 200)
+//        ])
+//
+//        // TODO: нужно делать отдельную вьюшку для этой штуки. Пока тусть так
+//    }
     
     private func setupQuestionLabel() {
         questionLabel.text = "Успеет ли команда номер 19 закончить проэкт в срок?"
