@@ -14,7 +14,7 @@ extension UIColor {
     }
     
     static var red2: UIColor {
-        #colorLiteral(red: 0.9506267905, green: 0, blue: 0, alpha: 1)
+        #colorLiteral(red: 0.5489718914, green: 0, blue: 0.005915251095, alpha: 1)
     }
     
 }

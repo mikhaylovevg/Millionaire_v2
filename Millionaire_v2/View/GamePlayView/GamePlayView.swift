@@ -191,7 +191,13 @@ class GamePlayView: UIView {
         
         for _ in 0...3 {
             let button = getButton()
-            button.layer.cornerRadius = 30
+            let image = UIImage(named: R.Images.AnswerButton.blue)
+            button.setBackgroundImage(image, for: .normal)
+            
+            button.layer.cornerRadius = 18
+            button.layer.borderWidth = 3
+            button.layer.borderColor = UIColor.gray.cgColor
+            
             stackViewContainerAnswers.addArrangedSubview(button)
             
             NSLayoutConstraint.activate([
@@ -205,7 +211,11 @@ class GamePlayView: UIView {
         let button = UIButton(type: .system)
         button.setTitle( "Answer ", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .blue
+        
+        button.layer.shadowColor = UIColor.darkGray.cgColor
+        button.layer.shadowRadius = 4
+        button.layer.shadowOffset = .init(width: 5, height: 5)
+        button.layer.shadowOpacity = 10
         
         return button
     }
@@ -219,17 +229,15 @@ class GamePlayView: UIView {
     }
     
     private func setupClueButtons() {
-        for _ in 0...2 {
+        for index in 0...2 {
            let button = getButton()
-            button.layer.cornerRadius = 30
+            button.setBackgroundImage(getImage(index), for: .normal)
             button.setTitle(nil, for: .normal)
-            button.setImage(.getImageSymbolForButton(with: 20, and: "person.fill"), for: .normal)
-            button.tintColor = .white
             
             stackViewBottom.addArrangedSubview(button)
             
             NSLayoutConstraint.activate([
-                button.heightAnchor.constraint(equalToConstant: 60),
+                button.heightAnchor.constraint(equalToConstant: 76),
                 button.widthAnchor.constraint(equalToConstant: 100)
             ])
             
@@ -245,6 +253,15 @@ class GamePlayView: UIView {
         stackViewMain.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(stackViewMain)
+    }
+    
+    private func getImage(_ index: Int) -> UIImage? {
+        switch index {
+        case 0: return UIImage(named: R.Images.ClueButton.fiftyFifty)
+        case 1: return UIImage(named: R.Images.ClueButton.helpAudience)
+        case 2: return UIImage(named: R.Images.ClueButton.callFriend)
+        default: return nil
+        }
     }
     
     
