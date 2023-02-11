@@ -1,13 +1,14 @@
 //
-//  GameOverView.swift
+//  MainScreenView.swift
 //  Millionaire_v2
 //
-//  Created by Иван Осипов on 10.02.2023.
+//  Created by Иван Осипов on 11.02.2023.
 //
 
 import UIKit
 
-class GameOverView: UIView {
+class MainScreenView: UIView {
+
     // MARK: - UIImageView
     
     private lazy var backgroundImageView: UIImageView = {
@@ -27,30 +28,22 @@ class GameOverView: UIView {
     
     // MARK:  - UILabel
     
-    private lazy var loseLabel: UILabel = {
+    private lazy var welcomeLabel: UILabel = {
         let label = UILabel()
-        label.text = "Игра окончена!"
-        label.font = .systemFont(ofSize: 26, weight: .semibold)
+        label.text = "Добро пожаловать"
+        label.font = .systemFont(ofSize: 16, weight: .light)
+        label.numberOfLines = 0
         label.textColor = .white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    lazy var levelLabel: UILabel = {
+    private lazy var gameNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Уровень 4"
-        label.font = .systemFont(ofSize: 14, weight: .light)
-        label.textColor = .white
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    lazy var winningAmountLabel: UILabel = {
-        let label = UILabel()
-        label.text = "💰 15.000"
+        label.text = "Кто хочет стать миллионером"
         label.font = .systemFont(ofSize: 26, weight: .semibold)
+        label.numberOfLines = 0
         label.textColor = .white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -59,9 +52,9 @@ class GameOverView: UIView {
     
     // MARK:  - UIButton
     
-    lazy var newGameButton: UIButton = {
+    lazy var rulesGameButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Новая игра", for: .normal)
+        button.setTitle("Правила игры", for: .normal)
         button.tintColor = .white
         button.setBackgroundImage(UIImage(named: R.Images.AnswerButton.blue), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
@@ -70,9 +63,9 @@ class GameOverView: UIView {
         return button
     }()
     
-    lazy var mainScreenButton: UIButton = {
+    lazy var startGameButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Главная", for: .normal)
+        button.setTitle("Новая игра", for: .normal)
         button.tintColor = .white
         button.setBackgroundImage(UIImage(named: R.Images.AnswerButton.blue), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
@@ -86,7 +79,7 @@ class GameOverView: UIView {
     private var topStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .fill
         stackView.spacing = 15
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -112,8 +105,6 @@ class GameOverView: UIView {
         setupView()
     }
     
-    // MARK: - Private Methods
-    
     private func setupView() {
         self.addSubview(backgroundImageView)
         self.addSubview(topStackView)
@@ -125,12 +116,12 @@ class GameOverView: UIView {
     
     private func setupStackView() {
         topStackView.addArrangedSubview(logoImageView)
-        topStackView.addArrangedSubview(loseLabel)
-        topStackView.addArrangedSubview(levelLabel)
-        topStackView.addArrangedSubview(winningAmountLabel)
+        topStackView.addArrangedSubview(welcomeLabel)
+        topStackView.addArrangedSubview(gameNameLabel)
+
         
-        bottomStackView.addArrangedSubview(newGameButton)
-        bottomStackView.addArrangedSubview(mainScreenButton)
+        bottomStackView.addArrangedSubview(rulesGameButton)
+        bottomStackView.addArrangedSubview(startGameButton)
     }
     
     private func setConstraints() {
@@ -160,13 +151,14 @@ class GameOverView: UIView {
         
         // Button Constraints
         NSLayoutConstraint.activate([
-            newGameButton.heightAnchor.constraint(equalToConstant: 40),
-            newGameButton.widthAnchor.constraint(equalToConstant: 300)
+            rulesGameButton.heightAnchor.constraint(equalToConstant: 40),
+            rulesGameButton.widthAnchor.constraint(equalToConstant: 300)
         ])
         
         NSLayoutConstraint.activate([
-            mainScreenButton.heightAnchor.constraint(equalToConstant: 40),
-            mainScreenButton.widthAnchor.constraint(equalToConstant: 300)
+            startGameButton.heightAnchor.constraint(equalToConstant: 40),
+            startGameButton.widthAnchor.constraint(equalToConstant: 300)
         ])
     }
+
 }
