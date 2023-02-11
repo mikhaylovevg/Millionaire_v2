@@ -57,8 +57,8 @@ class GamePlayView: UIView {
         questionLabel.text = text
     }
     
-    func configureQuestionNumberLabel(_ number: Int) {
-        questionNumberLabel.text = "QUESTION: \(number)"
+    func configureQuestionNumberLabel(_ costQuestion: String) {
+        questionNumberLabel.text = costQuestion
     }
     
     /// установить значение таймера в UILabel
@@ -206,19 +206,6 @@ class GamePlayView: UIView {
             NSLayoutConstraint.activate([
                 button.heightAnchor.constraint(equalToConstant: 45)])
         }
-    }
-    
-    private func getButton() -> UIButton {
-        let button = UIButton(type: .system)
-        button.setTitle( "Answer ", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-
-        button.layer.shadowColor = UIColor.darkGray.cgColor
-        button.layer.shadowRadius = 4
-        button.layer.shadowOffset = .init(width: 5, height: 5)
-        button.layer.shadowOpacity = 10
-
-        return button
     }
     
     private func setupStackViewBottom() {

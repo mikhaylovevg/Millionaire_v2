@@ -9,8 +9,8 @@ import UIKit
 
 class GamePlayController: UIViewController {
     
-    let gamePlayView = GamePlayView()
-    
+    private let gamePlayView = GamePlayView()
+    private var gameBrain = GameBrain()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +25,17 @@ class GamePlayController: UIViewController {
         addTargetForClueButtons()
         addTargerForBackButton()
         addTargerForShowTableQuestionsButton()
+        updateUI()
+    }
+    
+    private func updateUI() {
+        let buttons = gamePlayView.answerButtons
+        buttons.enumerated().forEach { index, button in
+            let answer = gameBrain.getAnswer(index)
+            button.setTitle(answer, for: .normal)
+            gamePlayView.configureQiestionLabel(gameBrain.getQuestion())
+            gamePlayView.configureQuestionNumberLabel(gameBrain.getCostQuestion())
+        }
     }
     
     private func addTargetForAnswerButtons() {
@@ -57,7 +68,13 @@ class GamePlayController: UIViewController {
     }
     
     @objc func answerButtonPressed(_ sender: UIButton) {
-        print("pressed - answerButtonPressed")
+        
+        if gameBrain.checkAnswer(sender.currentTitle) {
+            gameBrain.nextQuestion()
+            updateUI()
+        } else {
+            print("Wrong!!")
+        }
     }
     
     @objc func clueButtonPressed(_ sender: UIButton) {
