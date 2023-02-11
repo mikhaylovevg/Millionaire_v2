@@ -7,33 +7,39 @@
 
 import Foundation
 
-class GameBrain {
+struct GameBrain {
     
-    var questions = Question.questions
+    private let quiz = Source.questions
     var questionNumber = 0
-    var questionRublesText: String?
-    var currentQuestion: String?
-    var answerA: String?
-    var answerB: String?
-    var answerC: String?
-    var answerD: String?
-    var answerCorrect: String?
+    private var score = 0
     
-    func getQuestion() {
-        currentQuestion = questions[questionNumber].text
-        questionRublesText = questions[questionNumber].number
-        answerA = questions[questionNumber].answer[0]
-        answerB = questions[questionNumber].answer[1]
-        answerC = questions[questionNumber].answer[2]
-        answerD = questions[questionNumber].answer[3]
-        answerCorrect = questions[questionNumber].rightAnswer
-        questionNumber += 1
+    func getAnswer(_ indexButton: Int) -> String {
+        return quiz[score].answer[indexButton]
     }
     
-    func checkAnswer(_ userAnswer: String) -> Bool {
-        let check = userAnswer == answerCorrect
-        questions[questionNumber - 1].isAnswered = check // ??? [questionNumber] or [questionNumber - 1]
-        return check
+    func getQuestion() -> String {
+        return quiz[score].text
     }
     
+    func getCostQuestion() -> String {
+        return quiz[score].number
+    }
+    
+    func checkAnswer(_ userAnswer: String?) -> Bool {
+        if userAnswer == quiz[score].rightAnswer {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    mutating func nextQuestion() {
+        let count = quiz.count
+        if score < count - 1 {
+            score += 1
+        } else {
+            score = 0
+        }
+    }
+
 }
