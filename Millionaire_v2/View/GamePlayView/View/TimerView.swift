@@ -46,9 +46,10 @@ class TimerView: UIView {
         self.addSubview(containerView)
         
         NSLayoutConstraint.activate([
-            containerView.heightAnchor.constraint(equalTo: self.heightAnchor),
+            containerView.heightAnchor.constraint(equalToConstant: 50),
             containerView.widthAnchor.constraint(equalToConstant: 120),
-            containerView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            containerView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            containerView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
     }
     
@@ -74,6 +75,12 @@ class TimerView: UIView {
         timerImage.tintColor = .red2
         
         stackView.addArrangedSubview(timerImage)
+        
+//        NSLayoutConstraint.activate([
+//            timerImage.topAnchor.constraint(equalTo: stackView.topAnchor),
+//            timerImage.leftAnchor.constraint(equalTo: stackView.leftAnchor),
+//            timerImage.bottomAnchor.constraint(equalTo: stackView.bottomAnchor)
+//        ])
     }
     
     private func setupTimerLabel() {
