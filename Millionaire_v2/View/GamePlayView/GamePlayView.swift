@@ -12,7 +12,7 @@ class GamePlayView: UIView {
     
     // MARK: - Constants
     
-    private let spacingMain: CGFloat = 24
+    private let spacingMain: CGFloat = 16
     private let offSet: CGFloat = 16
     private let spacingBetweenAnswerButton: CGFloat = 14
     
@@ -179,9 +179,10 @@ class GamePlayView: UIView {
         
         stackViewMain.addArrangedSubview(stackViewContainerAnswers)
         
-        NSLayoutConstraint.activate([
-            stackViewContainerAnswers.leftAnchor.constraint(equalTo: stackViewMain.leftAnchor, constant: 20),
-            stackViewContainerAnswers.rightAnchor.constraint(equalTo: stackViewMain.rightAnchor, constant: -20)])
+//        NSLayoutConstraint.activate([
+////            stackViewContainerAnswers.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
+////            stackViewContainerAnswers.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),
+//            stackViewContainerAnswers.heightAnchor.constraint(equalToConstant: 300)])
     }
     
     private func setupAnswerButtons() {
@@ -214,6 +215,10 @@ class GamePlayView: UIView {
         stackViewBottom.distribution = .fillEqually
 
         stackViewMain.addArrangedSubview(stackViewBottom)
+        
+        NSLayoutConstraint.activate([
+            stackViewBottom.heightAnchor.constraint(equalToConstant: 60)
+        ])
     }
     
     private func setupClueButtons() {
@@ -223,10 +228,10 @@ class GamePlayView: UIView {
             
             stackViewBottom.addArrangedSubview(button)
             
-            NSLayoutConstraint.activate([
-                button.heightAnchor.constraint(equalToConstant: 70),
-                button.widthAnchor.constraint(equalToConstant: 94)
-            ])
+//            NSLayoutConstraint.activate([
+//                button.heightAnchor.constraint(equalToConstant: 70),
+////                button.widthAnchor.constraint(equalToConstant: 94)
+//            ])
         }
     }
     
@@ -242,7 +247,7 @@ class GamePlayView: UIView {
             stackViewMain.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             stackViewMain.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: offSet),
             stackViewMain.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -offSet),
-            stackViewMain.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)])
+            stackViewMain.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -offSet)])
     }
     
     private func getImage(_ index: Int) -> UIImage? {
