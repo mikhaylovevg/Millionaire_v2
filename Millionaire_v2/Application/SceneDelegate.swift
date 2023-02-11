@@ -17,6 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         // можно назначить свой ViewController с которым работаешь
 //        window?.rootViewController = ViewController()         // Default
+//        window?.rootViewController = MainScreenViewController()
         window?.rootViewController = GamePlayController()
 //        window?.rootViewController = GameOverViewController()
         window?.makeKeyAndVisible()
