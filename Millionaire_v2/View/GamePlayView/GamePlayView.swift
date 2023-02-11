@@ -27,15 +27,21 @@ class GamePlayView: UIView {
     private let questionNumberLabel = UILabel()
     let showTableQuestionsButton = UIButton()
     
-//    private let timerLabel = UILabel()
     private let timerView = TimerView()
     private let questionLabel = UILabel()
     
     private let stackViewContainerAnswers = UIStackView()
-    var answerButtons: [UIButton] = []
+    var answerButtons: [UIButton] = [
+        .init(type: .system),
+        .init(type: .system),
+        .init(type: .system),
+        .init(type: .system)]
     
     private let stackViewBottom = UIStackView()
-    var clueButtons: [UIButton] = []
+    var clueButtons: [UIButton] = [
+        .init(type: .system),
+        .init(type: .system),
+        .init(type: .system)]
     
     /// принимает массив ответов и устанавливает на кнопку
     func configureButton(with answers: [String]) {
@@ -93,19 +99,6 @@ class GamePlayView: UIView {
         
         setupClueButtons()
         setupStackViewBottom()
-        
-        setConstraints()
-    }
-    
-    private func setConstraints() {
-        NSLayoutConstraint.activate([
-            stackViewMain.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            stackViewMain.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: offSet),
-            stackViewMain.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -offSet),
-            stackViewMain.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            
-            
-        ])
     }
     
     private func setupBackgroundImageView() {
@@ -185,25 +178,33 @@ class GamePlayView: UIView {
         stackViewContainerAnswers.distribution = .fillEqually
         
         stackViewMain.addArrangedSubview(stackViewContainerAnswers)
+        
+        NSLayoutConstraint.activate([
+            stackViewContainerAnswers.leftAnchor.constraint(equalTo: stackViewMain.leftAnchor, constant: 20),
+            stackViewContainerAnswers.rightAnchor.constraint(equalTo: stackViewMain.rightAnchor, constant: -20)])
     }
     
     private func setupAnswerButtons() {
         
-        for _ in 0...3 {
-            let button = getButton()
+        answerButtons.forEach { button in
+            button.setTitle("Answer", for: .normal)
             let image = UIImage(named: R.Images.AnswerButton.blue)
             button.setBackgroundImage(image, for: .normal)
             
-            button.layer.cornerRadius = 18
-            button.layer.borderWidth = 3
-            button.layer.borderColor = UIColor.gray.cgColor
+            button.tintColor = .white
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
             
+        // TODO: вызывает ошибку!! (видимо нужно перенести в контроллер)
+
+//            button.layer.shadowColor = UIColor.darkGray.cgColor
+//            button.layer.shadowRadius = 4
+//            button.layer.shadowOffset = .init(width: 5, height: 5)
+//            button.layer.shadowOpacity = 10
+
             stackViewContainerAnswers.addArrangedSubview(button)
-            
+
             NSLayoutConstraint.activate([
-                button.heightAnchor.constraint(equalToConstant: 60)])
-            
-            answerButtons.append(button)
+                button.heightAnchor.constraint(equalToConstant: 45)])
         }
     }
     
@@ -211,12 +212,12 @@ class GamePlayView: UIView {
         let button = UIButton(type: .system)
         button.setTitle( "Answer ", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        
+
         button.layer.shadowColor = UIColor.darkGray.cgColor
         button.layer.shadowRadius = 4
         button.layer.shadowOffset = .init(width: 5, height: 5)
         button.layer.shadowOpacity = 10
-        
+
         return button
     }
     
@@ -229,22 +230,18 @@ class GamePlayView: UIView {
     }
     
     private func setupClueButtons() {
-        for index in 0...2 {
-           let button = getButton()
+        
+        clueButtons.enumerated().forEach { index, button in
             button.setBackgroundImage(getImage(index), for: .normal)
-            button.setTitle(nil, for: .normal)
             
             stackViewBottom.addArrangedSubview(button)
             
             NSLayoutConstraint.activate([
-                button.heightAnchor.constraint(equalToConstant: 76),
-                button.widthAnchor.constraint(equalToConstant: 100)
+                button.heightAnchor.constraint(equalToConstant: 70),
+                button.widthAnchor.constraint(equalToConstant: 94)
             ])
-            
-            clueButtons.append(button)
         }
     }
-    
     
     private func setupStackViewMain() {
         stackViewMain.axis = .vertical
@@ -253,6 +250,12 @@ class GamePlayView: UIView {
         stackViewMain.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(stackViewMain)
+        
+        NSLayoutConstraint.activate([
+            stackViewMain.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            stackViewMain.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: offSet),
+            stackViewMain.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -offSet),
+            stackViewMain.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)])
     }
     
     private func getImage(_ index: Int) -> UIImage? {
