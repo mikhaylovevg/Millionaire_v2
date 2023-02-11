@@ -33,6 +33,10 @@ class MainScreenViewController: UIViewController {
     
     @objc private func startGameButtonTapped() {
         print("startGameButtonTapped")
+        
+        let gamePlayVC = GamePlayController()
+        gamePlayVC.modalPresentationStyle = .fullScreen
+        present(gamePlayVC, animated: true)
     }
     
 }

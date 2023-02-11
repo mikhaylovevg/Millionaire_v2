@@ -65,8 +65,7 @@ class GamePlayController: UIViewController {
     }
     
     @objc func comeBackPressed(_ sender: UIButton) {
-        print("pressed - comeBackPressed")
-//        dismiss(animated: true)
+        dismiss(animated: true)
     }
     
     @objc func answerButtonPressed(_ sender: UIButton) {
