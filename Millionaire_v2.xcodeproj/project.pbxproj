@@ -15,6 +15,7 @@
 		10E4A3E52996575B0010A3A7 /* GamePlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E4A3E42996575B0010A3A7 /* GamePlayView.swift */; };
 		10E4A3E829965C2D0010A3A7 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E4A3E729965C2D0010A3A7 /* TimerView.swift */; };
 		10E4A3EA29965D330010A3A7 /* UIColor + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E4A3E929965D330010A3A7 /* UIColor + ext.swift */; };
+		6C0641892997752D00F91626 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0641882997752D00F91626 /* QuestionModel.swift */; };
 		6C24AB11299633FE004CC605 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C24AB10299633FE004CC605 /* AppDelegate.swift */; };
 		6C24AB13299633FE004CC605 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C24AB12299633FE004CC605 /* SceneDelegate.swift */; };
 		6C24AB15299633FE004CC605 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C24AB14299633FE004CC605 /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 		10E4A3E42996575B0010A3A7 /* GamePlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayView.swift; sourceTree = "<group>"; };
 		10E4A3E729965C2D0010A3A7 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		10E4A3E929965D330010A3A7 /* UIColor + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + ext.swift"; sourceTree = "<group>"; };
+		6C0641882997752D00F91626 /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		6C24AB0D299633FE004CC605 /* Millionaire_v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Millionaire_v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C24AB10299633FE004CC605 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6C24AB12299633FE004CC605 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		6C064187299774D900F91626 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6C0641882997752D00F91626 /* QuestionModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		6C24AB04299633FE004CC605 = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +140,7 @@
 			children = (
 				10E4A3DB2996515D0010A3A7 /* Helper */,
 				6C24AB26299639A7004CC605 /* Application */,
+				6C064187299774D900F91626 /* Model */,
 				6C24AB2929963AA1004CC605 /* View */,
 				6C24AB2A29963ABA004CC605 /* Controller */,
 				6C24AB1929963400004CC605 /* Assets.xcassets */,
@@ -240,6 +251,7 @@
 				0086989E2996C14B00203CC0 /* GameOverView.swift in Sources */,
 				10E4A3E829965C2D0010A3A7 /* TimerView.swift in Sources */,
 				10E4A3E52996575B0010A3A7 /* GamePlayView.swift in Sources */,
+				6C0641892997752D00F91626 /* QuestionModel.swift in Sources */,
 				6C24AB15299633FE004CC605 /* ViewController.swift in Sources */,
 				10E4A3EA29965D330010A3A7 /* UIColor + ext.swift in Sources */,
 				10E4A3DA29964B170010A3A7 /* Resources.swift in Sources */,
