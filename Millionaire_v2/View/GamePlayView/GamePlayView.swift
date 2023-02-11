@@ -34,13 +34,6 @@ class GamePlayView: UIView {
     
     let containerClueView = CluesContainerView()
     
-    /// принимает массив ответов и устанавливает на кнопку
-    func configureButton(with answers: [String]) {
-        answers.enumerated().forEach { index, answer in
-//            answerButtons[index].setTitle(answer, for: .normal)
-        }
-    }
-    
     // MARK: - Internal methods
     
     /// установить вопрос в UILabel
@@ -190,6 +183,7 @@ class GamePlayView: UIView {
 }
 
 // MARK: - Helper
+
 extension UIImage {
     
     /// возвращает сконфигурировыный системный UIImage? для кнопки

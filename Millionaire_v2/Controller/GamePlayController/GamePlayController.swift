@@ -21,34 +21,36 @@ class GamePlayController: UIViewController {
     
     private func setup() {
         
-//        addTargetForAnswerButtons()
-//        addTargetForClueButtons()
+        addTargetForAnswerButtons()
+        addTargetForClueButtons()
         addTargerForBackButton()
         addTargerForShowTableQuestionsButton()
-//        updateUI()
+        updateUI()
     }
     
-//    private func updateUI() {
-//        let buttons = gamePlayView.answerButtons
-//        buttons.enumerated().forEach { index, button in
-//            let answer = gameBrain.getAnswer(index)
-//            button.setTitle(answer, for: .normal)
-//            gamePlayView.configureQiestionLabel(gameBrain.getQuestion())
-//            gamePlayView.configureQuestionNumberLabel(gameBrain.getCostQuestion())
-//        }
-//    }
+    private func updateUI() {
+        let buttons = gamePlayView.containerAnswerButton.answerButtons
+        buttons.enumerated().forEach { index, button in
+            let answer = gameBrain.getAnswer(index)
+            button.setTitle(answer, for: .normal)
+            gamePlayView.configureQiestionLabel(gameBrain.getQuestion())
+            gamePlayView.configureQuestionNumberLabel(gameBrain.getCostQuestion())
+        }
+    }
     
-//    private func addTargetForAnswerButtons() {
-//        gamePlayView.answerButtons.forEach { button in
-//            button.addTarget(self, action: #selector(answerButtonPressed), for: .touchUpInside)
-//        }
-//    }
+    private func addTargetForAnswerButtons() {
+        let buttons = gamePlayView.containerAnswerButton.answerButtons
+        buttons.forEach { button in
+            button.addTarget(self, action: #selector(answerButtonPressed), for: .touchUpInside)
+        }
+    }
     
-//    private func addTargetForClueButtons() {
-//        gamePlayView.clueButtons.forEach { button in
-//            button.addTarget(self, action: #selector(clueButtonPressed), for: .touchUpInside)
-//        }
-//    }
+    private func addTargetForClueButtons() {
+        let buttons = gamePlayView.containerClueView.clueButtons
+        buttons.forEach { button in
+            button.addTarget(self, action: #selector(clueButtonPressed), for: .touchUpInside)
+        }
+    }
     
     private func addTargerForShowTableQuestionsButton() {
         gamePlayView.showTableQuestionsButton.addTarget(self, action: #selector(showTableQuestions), for: .touchUpInside)
@@ -71,7 +73,7 @@ class GamePlayController: UIViewController {
         
         if gameBrain.checkAnswer(sender.currentTitle) {
             gameBrain.nextQuestion()
-//            updateUI()
+            updateUI()
         } else {
             print("Wrong!!")
         }

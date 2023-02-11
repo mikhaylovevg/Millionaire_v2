@@ -43,9 +43,7 @@ class CluesContainerView: UIView {
             clueButtons[2].bottomAnchor.constraint(equalTo: bottomAnchor),
             clueButtons[2].leadingAnchor.constraint(equalTo: clueButtons[1].trailingAnchor, constant: spacing),
             clueButtons[2].widthAnchor.constraint(equalToConstant: width),
-            clueButtons[2].heightAnchor.constraint(equalToConstant: height),
-        ])
-        
+            clueButtons[2].heightAnchor.constraint(equalToConstant: height)])
     }
     
     private func setupClueButtons() {

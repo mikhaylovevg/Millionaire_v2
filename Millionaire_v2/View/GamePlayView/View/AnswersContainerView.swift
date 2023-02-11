@@ -22,7 +22,6 @@ class AnswersContainerView: UIView {
         setupAnswerButtons()
     }
     
-    
     private func setupStackView() {
         stackView.axis = .vertical
         stackView.spacing = 16
