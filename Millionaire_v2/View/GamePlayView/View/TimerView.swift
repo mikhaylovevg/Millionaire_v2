@@ -10,9 +10,10 @@ import UIKit
 class TimerView: UIView {
     
     let spacing: CGFloat = 8
+    var timerTime = 30
     
-    private let timerLabel = UILabel()
-    private let timerImage = UIImageView()
+    var timerLabel = UILabel()
+    private var timerImage = UIImageView()
     
     private let containerView = UIView()
     private let stackView = UIStackView()
@@ -84,7 +85,7 @@ class TimerView: UIView {
     }
     
     private func setupTimerLabel() {
-        timerLabel.text = "05"
+        timerLabel.text = "\(timerTime)"
         timerLabel.font = UIFont.boldSystemFont(ofSize: 30)
         timerLabel.textColor = .red2
         timerLabel.textAlignment = .center

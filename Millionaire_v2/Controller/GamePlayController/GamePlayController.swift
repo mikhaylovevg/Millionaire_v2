@@ -13,6 +13,8 @@ class GamePlayController: UIViewController {
     private let gamePlayView = GamePlayView()
     private var gameBrain = GameBrain()
     private var player: AVAudioPlayer?
+    var totalTime = 30
+    var timer = Timer()
     
     private var rightNavBarButton: UIBarButtonItem?
     
@@ -31,6 +33,7 @@ class GamePlayController: UIViewController {
         setupShowTableResult()
         
         updateUI()
+        
     }
     
     private func setupShowTableResult() {
@@ -40,6 +43,7 @@ class GamePlayController: UIViewController {
     }
     
     @objc private func updateUI() {
+        gamePlayView.timerView.timerLabel.text = "\(self.totalTime)"
         let buttons = gamePlayView.containerAnswerButton.answerButtons
         buttons.enumerated().forEach { index, button in
             let answer = gameBrain.getAnswer(index)
@@ -48,6 +52,8 @@ class GamePlayController: UIViewController {
             gamePlayView.configureQiestionLabel(gameBrain.getQuestion())
         }
         playSong(song: "waitForResponse")
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+        
     }
     
     private func addTargetForAnswerButtons() {
@@ -74,6 +80,8 @@ class GamePlayController: UIViewController {
     }
     
     @objc func answerButtonPressed(_ sender: UIButton) {
+        timer.invalidate()
+        totalTime = 30
         playSong(song: "waitForInspection")
         sender.setBackgroundImage(UIImage(named: R.Images.AnswerButton.yellow), for: .normal)
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
@@ -83,6 +91,7 @@ class GamePlayController: UIViewController {
                 sender.setBackgroundImage(UIImage(named: R.Images.AnswerButton.green), for: .normal)
                 self.gameBrain.nextQuestion()
                 Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.updateUI), userInfo: nil, repeats: false)
+                
             } else {
                 self.playSong(song: "wrongAnswer")
                 sender.setBackgroundImage(UIImage(named: R.Images.AnswerButton.red), for: .normal)
@@ -133,6 +142,16 @@ class GamePlayController: UIViewController {
             player.play()
         } catch let error {
             print(error.localizedDescription)
+        }
+    }
+    
+    @objc func updateTime() {
+        if totalTime != 0 {
+            totalTime -= 1
+            gamePlayView.timerView.timerLabel.text = "\(totalTime)"
+        } else {
+            timer.invalidate()
+            gameOverScreen()
         }
     }
 }
