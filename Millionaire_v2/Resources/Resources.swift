@@ -35,6 +35,12 @@ enum R {
             static let helpAudience = "HelpAudience"
         }
         
+        enum UsedClueButton {
+            static let usedCallFriend = "UsedCallFriend"
+            static let usedFiftyFifty = "UsedFiftyFifty"
+            static let usedHelpAudience = "UsedHelpAudience"
+        }
+        
         enum GamePlay{
             static let timerSystemImage = "stopwatch.fill"
         }

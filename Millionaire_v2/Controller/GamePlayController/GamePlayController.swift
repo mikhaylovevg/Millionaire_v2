@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import AVFoundation
 
 class GamePlayController: UIViewController {
     
     private let gamePlayView = GamePlayView()
     private var gameBrain = GameBrain()
+    private var player: AVAudioPlayer?
     
     private var rightNavBarButton: UIBarButtonItem?
     
@@ -37,13 +39,15 @@ class GamePlayController: UIViewController {
         navigationItem.setRightBarButton(rightNavBarButton, animated: true)
     }
     
-    private func updateUI() {
+    @objc private func updateUI() {
         let buttons = gamePlayView.containerAnswerButton.answerButtons
         buttons.enumerated().forEach { index, button in
             let answer = gameBrain.getAnswer(index)
             button.setTitle(answer, for: .normal)
+            button.setBackgroundImage(UIImage(named: R.Images.AnswerButton.blue), for: .normal)
             gamePlayView.configureQiestionLabel(gameBrain.getQuestion())
         }
+        playSong(song: "waitForResponse")
     }
     
     private func addTargetForAnswerButtons() {
@@ -70,16 +74,65 @@ class GamePlayController: UIViewController {
     }
     
     @objc func answerButtonPressed(_ sender: UIButton) {
-        
-        if gameBrain.checkAnswer(sender.currentTitle) {
-            gameBrain.nextQuestion()
-            updateUI()
-        } else {
-            print("Wrong!!")
+        playSong(song: "waitForInspection")
+        sender.setBackgroundImage(UIImage(named: R.Images.AnswerButton.yellow), for: .normal)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            guard let self = self else { return }
+            if self.gameBrain.checkAnswer(sender.currentTitle) {
+                self.playSong(song: "correctAnswer")
+                sender.setBackgroundImage(UIImage(named: R.Images.AnswerButton.green), for: .normal)
+                self.gameBrain.nextQuestion()
+                Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.updateUI), userInfo: nil, repeats: false)
+            } else {
+                self.playSong(song: "wrongAnswer")
+                sender.setBackgroundImage(UIImage(named: R.Images.AnswerButton.red), for: .normal)
+                Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.gameOverScreen), userInfo: nil, repeats: false)
+            }
         }
     }
     
+    @objc func gameOverScreen() {
+        let vc = GameOverViewController()
+        vc.navigationItem.hidesBackButton = true
+        vc.gameOverView.levelLabel.text = "Уровень \(gameBrain.getScore())"
+        vc.gameOverView.winningAmountLabel.text = gameBrain.getSum()
+        show(vc, sender: nil)
+    }
+    
     @objc func clueButtonPressed(_ sender: UIButton) {
-        print("pressed - clueButtonPressed")
+        if sender.currentBackgroundImage == UIImage(named: R.Images.ClueButton.fiftyFifty) {
+
+            sender.setBackgroundImage(UIImage(named: R.Images.UsedClueButton.usedFiftyFifty), for: .normal)
+            sender.isEnabled = false
+        } else if sender.currentBackgroundImage == UIImage(named: R.Images.ClueButton.helpAudience) {
+            let message = "Зал проголосовал за ответ \(gameBrain.getCurrentAnswer())"
+            alert(title: "Помощь зала", message: message)
+            sender.setBackgroundImage(UIImage(named: R.Images.UsedClueButton.usedHelpAudience), for: .normal)
+            sender.isEnabled = false
+        } else {
+            let message = "Ваш друг считает что правильный ответ \(gameBrain.getCurrentAnswer())"
+            alert(title: "Звонок другу", message: message)
+            sender.setBackgroundImage(UIImage(named: R.Images.UsedClueButton.usedCallFriend), for: .normal)
+            sender.isEnabled = false
+        }
+    }
+    
+    func alert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Хорошо", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+    
+    private func playSong(song: String) {
+        guard let url = Bundle.main.url(forResource: song, withExtension: "mp3") else { return }
+        
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            guard let player = player else { return }
+            player.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
 }

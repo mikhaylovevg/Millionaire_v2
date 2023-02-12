@@ -25,6 +25,22 @@ struct GameBrain {
         return quiz[score].number
     }
     
+    func getCurrentAnswer() -> String {
+        return quiz[score].rightAnswer
+    }
+    
+    func getScore() -> String {
+        return "\(score)"
+    }
+    
+    func getSum() -> String {
+        if score == 0 {
+            return "💰0 рублей"
+        } else {
+            return quiz[score - 1].number
+        }
+    }
+    
     func checkAnswer(_ userAnswer: String?) -> Bool {
         if userAnswer == quiz[score].rightAnswer {
             return true
