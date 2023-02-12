@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LeaderboardView: UIView {
+class GameResultView: UIView {
     let tableView = UITableView()
     
     override init(frame: CGRect) {
@@ -33,7 +33,7 @@ class LeaderboardView: UIView {
     }
 }
 
-extension LeaderboardView: UITableViewDataSource {
+extension GameResultView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 15
     }
