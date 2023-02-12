@@ -35,6 +35,7 @@
 		6C3D549429982C8A00931929 /* victoryMillion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6C3D548D29982C8900931929 /* victoryMillion.mp3 */; };
 		6C3D549529982C8A00931929 /* tachMoney.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6C3D548E29982C8900931929 /* tachMoney.mp3 */; };
 		6C3D549629982C8A00931929 /* waitForResponse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6C3D548F29982C8A00931929 /* waitForResponse.mp3 */; };
+		6C46446E2998BD0000489B27 /* GameResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C46446D2998BD0000489B27 /* GameResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		6C3D548D29982C8900931929 /* victoryMillion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = victoryMillion.mp3; sourceTree = "<group>"; };
 		6C3D548E29982C8900931929 /* tachMoney.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tachMoney.mp3; sourceTree = "<group>"; };
 		6C3D548F29982C8A00931929 /* waitForResponse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = waitForResponse.mp3; sourceTree = "<group>"; };
+		6C46446D2998BD0000489B27 /* GameResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,9 +215,10 @@
 		6C24AB2929963AA1004CC605 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6C46446C2998BC6B00489B27 /* GameResultView */,
 				00898E3E2997F1870022EFDF /* MainScreenView */,
-				0086989B2996C10100203CC0 /* GameOverView */,
 				10E4A3E1299657210010A3A7 /* GamePlayView */,
+				0086989B2996C10100203CC0 /* GameOverView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -243,6 +246,14 @@
 				6C3D548A29982C8800931929 /* wrongAnswer.mp3 */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		6C46446C2998BC6B00489B27 /* GameResultView */ = {
+			isa = PBXGroup;
+			children = (
+				6C46446D2998BD0000489B27 /* GameResultView.swift */,
+			);
+			path = GameResultView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -336,6 +347,7 @@
 				008698A02996C1B400203CC0 /* GameOverViewController.swift in Sources */,
 				10A89D3F2997C9A400BDBEEC /* Source.swift in Sources */,
 				6C24AB11299633FE004CC605 /* AppDelegate.swift in Sources */,
+				6C46446E2998BD0000489B27 /* GameResultView.swift in Sources */,
 				10A89D672997F0C600BDBEEC /* CluesContainerView.swift in Sources */,
 				00898E432997F1D70022EFDF /* MainScreenViewController.swift in Sources */,
 				6C24AB13299633FE004CC605 /* SceneDelegate.swift in Sources */,
