@@ -10,21 +10,27 @@ import UIKit
 class GameResultViewConroller: UIViewController {
     
     let gameResultView = GameResultView()
+    var questions: [Question]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view = gameResultView
-        example()
+        starsSetup()
     }
     
-    private func example() {
-        let colors: [ColorTableResult] = [.violet, .green, .blue, .yellow, .red]
+    private func starsSetup() {
         
+        guard let q = questions else { return }
         
-        for index in 0...14 {
-            let randomIndex = Int.random(in: 0..<colors.count)
-            gameResultView.configereResultTable(index, color: colors[randomIndex], text: "result \(index)")
+        for (index, element) in q.enumerated().reversed() {
+            print(" index : \(index)")
+            gameResultView.configereResultTable(for: index, text: element.number)
+            if element.isAnswered {
+                gameResultView.configureResultTable(for: index, and: .green)
+            } else {
+                gameResultView.configureResultTable(for: index, and: .blue)
+            }
         }
     }
 }

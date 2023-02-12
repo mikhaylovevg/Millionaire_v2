@@ -7,16 +7,6 @@
 
 import UIKit
 
-/*
- enum AnswerButton {
-     static let blue = "ButtonBlue"
-     static let green = "ButtonGreen"
-     static let red = "ButtonRed"
-     static let violet = "ButtonViolet"
-     static let yellow = "ButtonYellow"
- }
- */
-
 enum ColorTableResult {
     case blue
     case green

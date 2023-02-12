@@ -22,9 +22,13 @@ class GameResultView: UIView {
         setupResultContainerView()
     }
     
-    /// задает текст цвет элемента таблицы результатов по индексу от 0 - 14
-    func configereResultTable(_ index: Int, color: ColorTableResult, text: String) {
+    /// задает текст элемента таблицы результатов по индексу от 0 - 14
+    func configereResultTable(for index: Int, text: String) {
         resultContainerView.configureResultTitle(index, text)
+    }
+    
+    /// задает цвет элемента таблицы результатов по индексу от 0 - 14
+    func configureResultTable(for index: Int,and color: ColorTableResult) {
         resultContainerView.configureResult(index: index, color: color)
     }
     
