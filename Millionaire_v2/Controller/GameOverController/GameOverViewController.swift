@@ -29,13 +29,13 @@ class GameOverViewController: UIViewController {
     @objc private func newGameButtonTapped() {
         let vc = GamePlayController()
         vc.navigationItem.hidesBackButton = true
-        show(vc, sender: nil)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func mainScreenButtonTapped() {
         let vc = MainScreenViewController()
         vc.navigationItem.hidesBackButton = true
-        show(vc, sender: nil)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }

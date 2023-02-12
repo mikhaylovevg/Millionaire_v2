@@ -33,6 +33,7 @@ class MainScreenViewController: UIViewController {
     
     @objc private func startGameButtonTapped() {
         let gamePlayVC = GamePlayController()
+        gamePlayVC.navigationItem.hidesBackButton = true
         navigationController?.pushViewController(gamePlayVC, animated: true)
     }
     
