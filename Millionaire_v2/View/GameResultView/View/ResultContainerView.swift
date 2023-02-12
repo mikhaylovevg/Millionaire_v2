@@ -70,15 +70,17 @@ class ResultContainerView: UIView {
     }
     
     private func setupResultsButtons() {
-        for _ in 0...14 {
+        for i in 0...14 {
             let button = UIButton()
             let image = UIImage(named: R.Images.AnswerButton.blue)
             button.setBackgroundImage(image, for: .normal)
             button.setBackgroundImage(image, for: .highlighted)
             button.setTitleColor(.white, for: .normal)
-            button.setTitle("", for: .normal)
+            button.titleLabel?.textAlignment = .center
+            button.setTitle("\(i)", for: .normal)
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
             
-            resultsButtons.append(button)
+            resultsButtons.insert(button, at: 0)
             stackView.addArrangedSubview(button)
         }
     }

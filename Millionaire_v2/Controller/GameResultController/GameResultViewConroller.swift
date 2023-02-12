@@ -23,10 +23,10 @@ class GameResultViewConroller: UIViewController {
         
         guard let q = questions else { return }
         
-        for (index, element) in q.enumerated().reversed() {
+        for (index, _) in q.enumerated().reversed() {
             print(" index : \(index)")
-            gameResultView.configereResultTable(for: index, text: element.number)
-            if element.isAnswered {
+            gameResultView.configereResultTable(for: index, text: q[index].number)
+            if q[index].isAnswered {
                 gameResultView.configureResultTable(for: index, and: .green)
             } else {
                 gameResultView.configureResultTable(for: index, and: .blue)
