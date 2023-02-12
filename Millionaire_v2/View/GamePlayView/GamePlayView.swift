@@ -27,7 +27,7 @@ class GamePlayView: UIView {
 //    private let questionNumberLabel = UILabel()
 //    let showTableQuestionsButton = UIButton()
     
-    private let timerView = TimerView()
+    let timerView = TimerView()
     private let questionLabel = UILabel()
 
     let containerAnswerButton = AnswersContainerView()
@@ -47,7 +47,6 @@ class GamePlayView: UIView {
     
     /// установить значение таймера в UILabel
     func configureTimerLabel(_ timer: Int) {
-        timerView.configureTimerLabel(timer)
 
         // TODO: над будет подумать какой формат принимает
     }
