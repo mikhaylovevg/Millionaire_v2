@@ -12,6 +12,8 @@ class GamePlayController: UIViewController {
     private let gamePlayView = GamePlayView()
     private var gameBrain = GameBrain()
     
+    private var rightNavBarButton: UIBarButtonItem?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,9 +25,16 @@ class GamePlayController: UIViewController {
         
         addTargetForAnswerButtons()
         addTargetForClueButtons()
-        addTargerForBackButton()
-        addTargerForShowTableQuestionsButton()
+        
+        setupShowTableResult()
+        
         updateUI()
+    }
+    
+    private func setupShowTableResult() {
+        let image = UIImage(systemName: "dollarsign.circle.fill")
+        rightNavBarButton = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(showTableResult))
+        navigationItem.setRightBarButton(rightNavBarButton, animated: true)
     }
     
     private func updateUI() {
@@ -34,7 +43,6 @@ class GamePlayController: UIViewController {
             let answer = gameBrain.getAnswer(index)
             button.setTitle(answer, for: .normal)
             gamePlayView.configureQiestionLabel(gameBrain.getQuestion())
-            gamePlayView.configureQuestionNumberLabel(gameBrain.getCostQuestion())
         }
     }
     
@@ -52,16 +60,9 @@ class GamePlayController: UIViewController {
         }
     }
     
-    private func addTargerForShowTableQuestionsButton() {
-        gamePlayView.showTableQuestionsButton.addTarget(self, action: #selector(showTableQuestions), for: .touchUpInside)
-    }
-    
-    private func addTargerForBackButton() {
-        gamePlayView.backButton.addTarget(self, action: #selector(comeBackPressed), for: .touchUpInside)
-    }
-    
-    @objc func showTableQuestions(_ sender: UIButton) {
-        print("pressed - showTableQuestions")
+    @objc func showTableResult(_ sender: UIButton) {
+        let resultVC = GameResultViewConroller()
+        navigationController?.pushViewController(resultVC, animated: true)
     }
     
     @objc func comeBackPressed(_ sender: UIButton) {
