@@ -110,6 +110,7 @@ class GamePlayController: UIViewController {
         vc.gameOverView.levelLabel.text = "Уровень \(gameBrain.getScore())"
         vc.gameOverView.winningAmountLabel.text = gameBrain.getSum()
         show(vc, sender: nil)
+        timer.invalidate()
     }
     
     @objc func clueButtonPressed(_ sender: UIButton) {
