@@ -12,7 +12,7 @@ struct Question {
     let text: String
     var answer: [String]
     var rightAnswer: String
-    var isAnswered: Bool? = nil
+    var isAnswered = false
     
     init(n: String, t: String, a: [String], correctAnswer: String) {
         number = n

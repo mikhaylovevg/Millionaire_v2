@@ -9,7 +9,7 @@ import Foundation
 
 struct GameBrain {
     
-    private let quiz = Source.questions
+    var quiz = Source.questions
     var questionNumber = 0
     private var score = 0
     
@@ -23,6 +23,10 @@ struct GameBrain {
     
     func getCostQuestion() -> String {
         return quiz[score].number
+    }
+    
+    mutating func didCorrectAnswer() {
+        quiz[score].isAnswered = true
     }
     
     func getCurrentAnswer() -> String {

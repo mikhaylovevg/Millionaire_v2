@@ -66,6 +66,7 @@ class GamePlayController: UIViewController {
     
     @objc func showTableResult(_ sender: UIButton) {
         let resultVC = GameResultViewConroller()
+        resultVC.questions = gameBrain.quiz
         navigationController?.pushViewController(resultVC, animated: true)
     }
     
@@ -79,6 +80,9 @@ class GamePlayController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
             guard let self = self else { return }
             if self.gameBrain.checkAnswer(sender.currentTitle) {
+                // верный ответ
+                self.gameBrain.didCorrectAnswer()
+                
                 self.playSong(song: "correctAnswer")
                 sender.setBackgroundImage(UIImage(named: R.Images.AnswerButton.green), for: .normal)
                 self.gameBrain.nextQuestion()
