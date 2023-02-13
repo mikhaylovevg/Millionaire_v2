@@ -10,7 +10,6 @@ import Foundation
 struct GameBrain {
     
     var quiz = Source.questions
-    var questionNumber = 0
     private var score = 0
     
     func getAnswer(_ indexButton: Int) -> String {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GameResultViewConroller: UIViewController {
+class PrizeTableConroller: UIViewController {
     
     let gameResultView = GameResultView()
     var questions: [Question]?

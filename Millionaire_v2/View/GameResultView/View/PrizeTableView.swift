@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum ColorTableResult {
+enum ColorPrize {
     case blue
     case green
     case red
@@ -15,7 +15,7 @@ enum ColorTableResult {
     case yellow
 }
 
-class ResultContainerView: UIView {
+class PrizeTableView: UIView {
     
     private var resultsButtons: [UIButton] = []
     private let stackView = UIStackView()
@@ -36,7 +36,7 @@ class ResultContainerView: UIView {
     }
     
     /// задает цвет для таблицы результатов
-    func configureResult(index: Int, color: ColorTableResult) {
+    func configureResult(index: Int, color: ColorPrize) {
         if index < resultsButtons.count {
             switch color {
             case .blue:

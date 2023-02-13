@@ -13,7 +13,7 @@ class GameResultView: UIView {
     let topAndBottomOffset: CGFloat = 16
     
     private let backgroundImageView = UIImageView()
-    private let resultContainerView = ResultContainerView()
+    private let resultContainerView = PrizeTableView()
 
     init() {
         super.init(frame: .zero)
@@ -28,7 +28,7 @@ class GameResultView: UIView {
     }
     
     /// задает цвет элемента таблицы результатов по индексу от 0 - 14
-    func configureResultTable(for index: Int,and color: ColorTableResult) {
+    func configureResultTable(for index: Int,and color: ColorPrize) {
         resultContainerView.configureResult(index: index, color: color)
     }
     
