@@ -73,7 +73,7 @@ class PrizeView: UIView {
     private func setupImageView() {
         imageView.image = UIImage(named: R.Images.AnswerButton.violet)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         
         self.addSubview(imageView)
         

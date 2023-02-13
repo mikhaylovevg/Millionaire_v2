@@ -33,6 +33,8 @@ enum R {
             static let callFriend = "CallFriend"
             static let fiftyFifty = "FiftyFifty"
             static let helpAudience = "HelpAudience"
+            static let continueGame = "play"
+            static let takeMoney = "takeMoney"
         }
         
         enum UsedClueButton {

@@ -76,10 +76,6 @@ class GamePlayController: UIViewController {
         navigationController?.pushViewController(resultVC, animated: true)
     }
     
-    @objc func comeBackPressed(_ sender: UIButton) {
-        dismiss(animated: true)
-    }
-    
     @objc func answerButtonPressed(_ sender: UIButton) {
         timer.invalidate()
         totalTime = 30

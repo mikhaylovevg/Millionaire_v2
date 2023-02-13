@@ -17,8 +17,11 @@ class PrizeTableConroller: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.isHidden = true
+        
         view = prizeTableView
         addTargetTakeMoneyButton()
+        addTargetContinueGameButton()
         starsSetup()
     }
     
@@ -40,11 +43,19 @@ class PrizeTableConroller: UIViewController {
         }
     }
     
-    private func addTargetTakeMoneyButton() {
-        prizeTableView.takeMoneyButton.addTarget(self, action: #selector(takeMoney), for: .touchUpInside)
+    private func addTargetContinueGameButton() {
+        prizeTableView.continueGameButton.addTarget(self, action: #selector(continueGamePressed), for: .touchUpInside)
     }
     
-    @objc func takeMoney() {
-        print("takeMoney")
+    private func addTargetTakeMoneyButton() {
+        prizeTableView.takeMoneyButton.addTarget(self, action: #selector(takeMoneyPressed), for: .touchUpInside)
+    }
+    
+    @objc func continueGamePressed() {
+        print("continueGamePressed")
+    }
+    
+    @objc func takeMoneyPressed() {
+        print("takeMoneyPressed")
     }
 }

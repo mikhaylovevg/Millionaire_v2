@@ -11,12 +11,16 @@ class PrizeTableView: UIView {
     
     private let heightCont: CGFloat = 81
     private let widthButton: CGFloat = 105
+    private var spacing: CGFloat {
+        return (widthButton / 2) + 10
+    }
     
     private let leftAndRightOffset: CGFloat = 30
     private let topAndBottomOffset: CGFloat = 16
     
     private let containerForButton = UIView()
     let takeMoneyButton = UIButton(type: .system)
+    let continueGameButton = UIButton(type: .system)
     
     private let backgroundImageView = UIImageView()
     private let prizeContainerView = PrizeContainerView()
@@ -30,6 +34,7 @@ class PrizeTableView: UIView {
         setupBackgroundImageView()
         setupContainerForButton()
         setupTakeMoneyButton()
+        setupContinueGame()
         setupPrizeContainerView()
     }
     
@@ -75,9 +80,24 @@ class PrizeTableView: UIView {
         ])
     }
     
+    private func setupContinueGame() {
+        continueGameButton.translatesAutoresizingMaskIntoConstraints = false
+        let image = UIImage(named: R.Images.ClueButton.continueGame)
+        continueGameButton.setBackgroundImage(image, for: .normal)
+        
+        containerForButton.addSubview(continueGameButton)
+        
+        NSLayoutConstraint.activate([
+            continueGameButton.heightAnchor.constraint(equalTo: containerForButton.heightAnchor),
+            continueGameButton.widthAnchor.constraint(equalToConstant: widthButton),
+            continueGameButton.centerXAnchor.constraint(equalTo: containerForButton.centerXAnchor, constant: spacing),
+            continueGameButton.centerYAnchor.constraint(equalTo: containerForButton.centerYAnchor)
+        ])
+    }
+    
     private func setupTakeMoneyButton() {
         takeMoneyButton.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: R.Images.ClueButton.callFriend)
+        let image = UIImage(named: R.Images.ClueButton.takeMoney)
         takeMoneyButton.setBackgroundImage(image, for: .normal)
         
         containerForButton.addSubview(takeMoneyButton)
@@ -85,7 +105,7 @@ class PrizeTableView: UIView {
         NSLayoutConstraint.activate([
             takeMoneyButton.heightAnchor.constraint(equalTo: containerForButton.heightAnchor),
             takeMoneyButton.widthAnchor.constraint(equalToConstant: widthButton),
-            takeMoneyButton.centerXAnchor.constraint(equalTo: containerForButton.centerXAnchor),
+            takeMoneyButton.centerXAnchor.constraint(equalTo: containerForButton.centerXAnchor, constant: -spacing),
             takeMoneyButton.centerYAnchor.constraint(equalTo: containerForButton.centerYAnchor)
         ])
     }
