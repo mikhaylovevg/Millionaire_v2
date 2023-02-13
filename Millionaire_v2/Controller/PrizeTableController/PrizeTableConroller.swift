@@ -56,7 +56,6 @@ class PrizeTableConroller: UIViewController {
     }
     
     @objc func continueGamePressed() {
-        print("continueGamePressed")
         delegate?.changeGameBrain(brain)
         navigationController?.popViewController(animated: true)
     }
