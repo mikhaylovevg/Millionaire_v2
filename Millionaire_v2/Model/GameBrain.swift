@@ -9,11 +9,34 @@ import Foundation
 
 struct GameBrain {
     
-    var quiz = Source.questions
+    // переменная для подсчета выйграша
+    private var userMoney = 0
+    
+    // несгораеммые суммы
+    private let fireproofMoney: [Int] = [1000, 32_000, 1_000_000]
+    
+    var quiz = Source().getQuestion()
+    
     private var score = 0
     
+    
+    // MARK: - Methods
+    
+    func getUserMoney() -> Int {
+    
+        switch userMoney {
+        case fireproofMoney[0]..<fireproofMoney[1] :
+            return fireproofMoney[0]
+        case fireproofMoney[1]..<fireproofMoney[2] :
+            return fireproofMoney[1]
+        case fireproofMoney[2] :
+            return fireproofMoney[2]
+        default: return 0
+        }
+    }
+    
     func getAnswer(_ indexButton: Int) -> String {
-        return quiz[score].answer[indexButton]
+        return quiz[score].answers[indexButton]
     }
     
     func getQuestion() -> String {
@@ -21,7 +44,7 @@ struct GameBrain {
     }
     
     func getCostQuestion() -> String {
-        return quiz[score].number
+        return "\(quiz[score].cost)"
     }
     
     mutating func didCorrectAnswer() {
@@ -40,7 +63,7 @@ struct GameBrain {
         if score == 0 {
             return "💰0 рублей"
         } else {
-            return quiz[score - 1].number
+            return "\(quiz[score - 1].cost)"
         }
     }
     

@@ -25,7 +25,7 @@ class PrizeTableConroller: UIViewController {
         
         for (index, _) in q.enumerated().reversed() {
             print(" index : \(index)")
-            gameResultView.configereResultTable(for: index, text: q[index].number)
+            gameResultView.configereResultTable(for: index, text: "\(q[index].cost)")
             if q[index].isAnswered {
                 gameResultView.configureResultTable(for: index, and: .green)
             } else {
