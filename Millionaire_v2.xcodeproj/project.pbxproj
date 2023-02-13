@@ -238,7 +238,7 @@
 		6C24AB2A29963ABA004CC605 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6C4644752998BDCE00489B27 /* GameResultController */,
+				6C4644752998BDCE00489B27 /* PrizeTableController */,
 				00898E3F2997F19E0022EFDF /* MainScreenController */,
 				0086989C2996C11700203CC0 /* GameOverController */,
 				10E4A3E02996570E0010A3A7 /* GamePlayController */,
@@ -270,12 +270,12 @@
 			path = PrizeTableView;
 			sourceTree = "<group>";
 		};
-		6C4644752998BDCE00489B27 /* GameResultController */ = {
+		6C4644752998BDCE00489B27 /* PrizeTableController */ = {
 			isa = PBXGroup;
 			children = (
 				6C4644762998BE2300489B27 /* PrizeTableConroller.swift */,
 			);
-			path = GameResultController;
+			path = PrizeTableController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

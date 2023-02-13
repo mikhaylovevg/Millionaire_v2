@@ -21,11 +21,6 @@ class GamePlayView: UIView {
     private let backgroundImageView = UIImageView()
     
     private let stackViewMain = UIStackView()
-//    private let stackViewTop = UIStackView()
-//
-//    let backButton = UIButton()
-//    private let questionNumberLabel = UILabel()
-//    let showTableQuestionsButton = UIButton()
     
     let timerView = TimerView()
     private let questionLabel = UILabel()
@@ -41,10 +36,6 @@ class GamePlayView: UIView {
         questionLabel.text = text
     }
     
-//    func configureQuestionNumberLabel(_ costQuestion: String) {
-//        questionNumberLabel.text = costQuestion
-//    }
-    
     /// установить значение таймера в UILabel
     func configureTimerLabel(_ timer: Int) {
 
@@ -58,21 +49,15 @@ class GamePlayView: UIView {
         
     }
     
-    
     // MARK: - Methods
     
     private func setupView() {
-        // view setting
+
         self.backgroundColor = .white
         
         setupBackgroundImageView()
         
         setupStackViewMain()
-        
-//        setupStackViewTop()
-//        setupBackButton()
-//        setupQuestionNumberLabel()
-//        setupShoeTableQuestionsButton()
         
         setupTimerView()
         setupQuestionLabel()
@@ -96,48 +81,6 @@ class GamePlayView: UIView {
             backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-    
-//    private func setupStackViewTop() {
-//        stackViewTop.axis = .horizontal
-//        stackViewTop.distribution = .fillProportionally
-//
-//        stackViewMain.addArrangedSubview(stackViewTop)
-//    }
-//
-//    private func setupBackButton() {
-//        backButton.setImage(UIImage.getImageSymbolForButton(with: 20, and: "arrow.left"), for: .normal)
-//        backButton.tintColor = .white
-//
-//        stackViewTop.addArrangedSubview(backButton)
-//
-//        NSLayoutConstraint.activate([
-//            backButton.heightAnchor.constraint(equalToConstant: 50),
-//            backButton.widthAnchor.constraint(equalToConstant: 50)
-//        ])
-//    }
-//
-//    private func setupQuestionNumberLabel() {
-//        questionNumberLabel.text = "QUESTION - 1"
-//        questionNumberLabel.textColor = .white
-//        questionNumberLabel.font = UIFont.boldSystemFont(ofSize: 18)
-//        questionNumberLabel.textAlignment = .center
-//
-//        stackViewTop.addArrangedSubview(questionNumberLabel)
-//
-//        // TODO: подумать как сделать лайбл с разным по стилю текстом
-//    }
-//
-//    private func setupShoeTableQuestionsButton() {
-//        showTableQuestionsButton.setImage(UIImage.getImageSymbolForButton(with: 20, and: "list.bullet.clipboard"), for: .normal)
-//        showTableQuestionsButton.tintColor = .white
-//
-//        stackViewTop.addArrangedSubview(showTableQuestionsButton)
-//
-//        NSLayoutConstraint.activate([
-//            showTableQuestionsButton.heightAnchor.constraint(equalToConstant: 50),
-//            showTableQuestionsButton.widthAnchor.constraint(equalToConstant: 50)
-//        ])
-//    }
     
     private func setupTimerView() {
         stackViewMain.addArrangedSubview(timerView)
@@ -180,17 +123,3 @@ class GamePlayView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-// MARK: - Helper
-
-//extension UIImage {
-//
-//    /// возвращает сконфигурировыный системный UIImage? для кнопки
-//    static func getImageSymbolForButton(with size: CGFloat, and systemImage: String) -> UIImage? {
-//        var imageConfig: UIImage.Configuration
-//        imageConfig = UIImage.SymbolConfiguration(pointSize: size, weight: .regular, scale: .large)
-//        let image = UIImage(systemName: systemImage, withConfiguration: imageConfig)
-//
-//        return image
-//    }
-//}

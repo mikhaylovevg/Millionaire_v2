@@ -72,7 +72,7 @@ class GamePlayController: UIViewController {
     
     @objc func showTableResult(_ sender: UIButton) {
         let resultVC = PrizeTableConroller()
-//        resultVC.questions = gameBrain.quiz
+        resultVC.brain = gameBrain
         navigationController?.pushViewController(resultVC, animated: true)
     }
     
