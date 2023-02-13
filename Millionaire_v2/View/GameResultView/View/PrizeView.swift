@@ -32,46 +32,43 @@ class PrizeView: UIView {
         
         setupImageView()
         setupStackView()
-        setupFor(label: numderlabel, with: "Вопрос номер 1", and: .left)
-        setupFor(label: costlabel, with: "100", and: .right)
+        
+        setupNumberLabel()
+        setupCostLabel()
     }
     
     
     // MARK: - Internal methods
-    
-    func configureColorImage(_ image: ColorPrize) {
-        
-    }
-    
-    // MARK: - Private Methods
     
     func configureCostQuestion(_ cost: Int) {
         costlabel.text = "\(cost)"
     }
     
     func configureNumberQuestion(_ numder: Int) {
-        numderlabel.text = "Вопрос \(numder)"
+        numderlabel.text = "Вопрос  \(numder)"
     }
     
-    func configureImage(color: ColorPrize) {
+    func configureColorImage(_ image: ColorPrize) {
         
-        let image: UIImage?
+        let imageForView: UIImage?
         
-        switch color {
+        switch image {
         case .blue:
-            image = UIImage(named: R.Images.AnswerButton.blue)
+            imageForView = UIImage(named: R.Images.AnswerButton.blue)
         case .green:
-            image = UIImage(named: R.Images.AnswerButton.green)
+            imageForView = UIImage(named: R.Images.AnswerButton.green)
         case .red:
-            image = UIImage(named: R.Images.AnswerButton.red)
+            imageForView = UIImage(named: R.Images.AnswerButton.red)
         case .violet:
-            image = UIImage(named: R.Images.AnswerButton.violet)
+            imageForView = UIImage(named: R.Images.AnswerButton.violet)
         case .yellow:
-            image = UIImage(named: R.Images.AnswerButton.yellow)
+            imageForView = UIImage(named: R.Images.AnswerButton.yellow)
         }
         
-        imageView.image = image
+        imageView.image = imageForView
     }
+    
+    // MARK: - Private Methods
     
     private func setupImageView() {
         imageView.image = UIImage(named: R.Images.AnswerButton.violet)
@@ -104,14 +101,22 @@ class PrizeView: UIView {
         ])
     }
     
-    private func setupFor(label: UILabel, with text: String,and textAlignment: NSTextAlignment) {
-        let label = UILabel()
-        label.text = text
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textColor = .white
-        label.textAlignment = textAlignment
+    private func setupNumberLabel() {
+        numderlabel.text = "Вопрос номер"
+        numderlabel.font = UIFont.boldSystemFont(ofSize: 18)
+        numderlabel.textColor = .white
+        numderlabel.textAlignment = .left
         
-        stackView.addArrangedSubview(label)
+        stackView.addArrangedSubview(numderlabel)
+    }
+    
+    private func setupCostLabel() {
+        costlabel.text = "100"
+        costlabel.font = UIFont.boldSystemFont(ofSize: 18)
+        costlabel.textColor = .white
+        costlabel.textAlignment = .right
+        
+        stackView.addArrangedSubview(costlabel)
     }
     
     required init?(coder: NSCoder) {

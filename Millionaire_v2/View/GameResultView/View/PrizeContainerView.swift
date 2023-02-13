@@ -13,39 +13,40 @@ class PrizeContainerView: UIView {
     private var prizeImageView: [PrizeView] = []
     private let stackView = UIStackView()
     
+    // MARK: - Init / setup
+    
     init() {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         
         setupStackView()
         setupPrizeImageView()
-//        setupResultsButtons()
     }
     
-    /// задает текст для элемента таблицы результатов
-//    func configureResultTitle(_ index: Int,_ text: String) {
-//        if index < resultsButtons.count {
-//            resultsButtons[index].setTitle(text, for: .normal)
-//        }
-//    }
+    // MARK: - Internal methods
     
-    /// задает цвет для таблицы результатов
-//    func configureResult(index: Int, color: ColorPrize) {
-//        if index < resultsImageView.count {
-//            switch color {
-//            case .blue:
-//                setImageFor(button: index, R.Images.AnswerButton.blue)
-//            case .green:
-//                setImageFor(button: index, R.Images.AnswerButton.green)
-//            case .red:
-//                setImageFor(button: index, R.Images.AnswerButton.red)
-//            case .violet:
-//                setImageFor(button: index, R.Images.AnswerButton.violet)
-//            case .yellow:
-//                setImageFor(button: index, R.Images.AnswerButton.yellow)
-//            }
-//        }
-//    }
+    /// задает номер вопроса для элемента таблицы результатов по индексу
+    func configureNumberQuestion(by index: Int,to number: Int) {
+        if index < prizeImageView.count {
+            prizeImageView[index].configureNumberQuestion(number)
+        }
+    }
+    
+    /// задает стоимость вопроса для элемента таблицы результатов по индексу
+    func configureCostQuestion(by index: Int,to cost: Int) {
+        if index < prizeImageView.count {
+            prizeImageView[index].configureCostQuestion(cost)
+        }
+    }
+    
+    /// задает картинку вопроса для элемента таблицы результатов по индексу
+    func configureImageQuestion(by index: Int,to colorImage: ColorPrize) {
+        if index < prizeImageView.count {
+            prizeImageView[index].configureColorImage(colorImage)
+        }
+    }
+    
+    // MARK: - Private Methods
     
     private func setupStackView() {
         stackView.axis = .vertical
@@ -67,31 +68,9 @@ class PrizeContainerView: UIView {
         for _ in 0...14 {
             let view = PrizeView()
             stackView.addArrangedSubview(view)
+            prizeImageView.insert(view, at: 0)
         }
     }
-    
-//    private func setupResultsButtons() {
-//        for i in 0...14 {
-//            let button = UIButton()
-//            let image = UIImage(named: R.Images.AnswerButton.blue)
-//            button.setBackgroundImage(image, for: .normal)
-//            button.setBackgroundImage(image, for: .highlighted)
-//            button.setTitleColor(.white, for: .normal)
-//            button.titleLabel?.textAlignment = .center
-//            button.setTitle("\(i)", for: .normal)
-//            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-//
-//            resultsButtons.insert(button, at: 0)
-//            stackView.addArrangedSubview(button)
-//        }
-//    }
-    
-//    private func setImageFor(button index: Int,_ imageName: String) {
-//        let image = UIImage(named: imageName)
-//        resultsButtons[index].setBackgroundImage(image, for: .normal)
-//        resultsButtons[index].setBackgroundImage(image, for: .highlighted)
-//    }
-
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

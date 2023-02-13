@@ -15,34 +15,44 @@ class PrizeTableView: UIView {
     // TODO: Сделать кнопку забрать деньги
     
     private let backgroundImageView = UIImageView()
-    private let resultContainerView = PrizeContainerView()
+    private let prizeContainerView = PrizeContainerView()
+    
+    // MARK: - Init / setup
 
     init() {
         super.init(frame: .zero)
         
         setupBackgroundImageView()
-        setupResultContainerView()
+        setupPrizeContainerView()
     }
     
-    /// задает текст элемента таблицы результатов по индексу от 0 - 14
-    func configereResultTable(for index: Int, text: String) {
-//        resultContainerView.configureResultTitle(index, text)
+    // MARK: - Internal methods
+    
+    /// задает номер вопроса для элемента таблицы результатов по индексу
+    func configureNumberQuestion(by index: Int,to number: Int) {
+        prizeContainerView.configureNumberQuestion(by: index, to: number)
     }
     
-    /// задает цвет элемента таблицы результатов по индексу от 0 - 14
-    func configureResultTable(for index: Int,and color: ColorPrize) {
-//        resultContainerView.configureResult(index: index, color: color)
+    /// задает стоимость вопроса для элемента таблицы результатов по индексу
+    func configureCostQuestion(by index: Int,to cost: Int) {
+        prizeContainerView.configureCostQuestion(by: index, to: cost)
     }
     
+    /// задает картинку вопроса для элемента таблицы результатов по индексу
+    func configureImageQuestion(by index: Int,to colorImage: ColorPrize) {
+        prizeContainerView.configureImageQuestion(by: index, to: colorImage)
+    }
     
-    private func setupResultContainerView() {
-        self.addSubview(resultContainerView)
+    // MARK: - Private Methods
+    
+    private func setupPrizeContainerView() {
+        self.addSubview(prizeContainerView)
         
         NSLayoutConstraint.activate([
-            resultContainerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: topAndBottomOffset),
-            resultContainerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: leftAndRightOffset),
-            resultContainerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -leftAndRightOffset),
-            resultContainerView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -topAndBottomOffset)
+            prizeContainerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: topAndBottomOffset),
+            prizeContainerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: leftAndRightOffset),
+            prizeContainerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -leftAndRightOffset),
+            prizeContainerView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -topAndBottomOffset)
         ])
     }
     

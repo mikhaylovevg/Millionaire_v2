@@ -9,8 +9,9 @@ import UIKit
 
 class PrizeTableConroller: UIViewController {
     
-    let gameResultView = PrizeTableView()
-    var questions: [Question]?
+    private let gameResultView = PrizeTableView()
+    
+    var brain: GameBrain?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,16 +22,19 @@ class PrizeTableConroller: UIViewController {
     
     private func starsSetup() {
         
-        guard let q = questions else { return }
+        let testColor: [ColorPrize] = [.violet, .yellow, .green]
+        var cost = 100
         
-        for (index, _) in q.enumerated().reversed() {
-            print(" index : \(index)")
-            gameResultView.configereResultTable(for: index, text: "\(q[index].cost)")
-            if q[index].isAnswered {
-                gameResultView.configureResultTable(for: index, and: .green)
-            } else {
-                gameResultView.configureResultTable(for: index, and: .blue)
-            }
+        for i in 0..<15 {
+            let randomInt = Int.random(in: 0..<testColor.count)
+
+            gameResultView.configureNumberQuestion(by: i, to: i + 1)
+            gameResultView.configureImageQuestion(by: i, to: testColor[randomInt])
+            gameResultView.configureCostQuestion(by: i, to: cost)
+            
+            print("cost: \(cost), index: \(i)")
+            cost += cost * 2
         }
+    
     }
 }
