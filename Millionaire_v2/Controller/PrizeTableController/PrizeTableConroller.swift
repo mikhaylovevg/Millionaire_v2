@@ -7,10 +7,14 @@
 
 import UIKit
 
+protocol PrizeTableConrollerDelegate {
+    func changeGameBrain(_ brain: GameBrain?)
+}
+
 class PrizeTableConroller: UIViewController {
     
     private let prizeTableView = PrizeTableView()
-//    private let gameBrain = GameBrain()
+    var delegate: PrizeTableConrollerDelegate?
     
     var brain: GameBrain?
 
@@ -53,6 +57,8 @@ class PrizeTableConroller: UIViewController {
     
     @objc func continueGamePressed() {
         print("continueGamePressed")
+        delegate?.changeGameBrain(brain)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func takeMoneyPressed() {

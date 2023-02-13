@@ -11,7 +11,9 @@ import AVFoundation
 class GamePlayController: UIViewController {
     
     private let gamePlayView = GamePlayView()
-    private var gameBrain = GameBrain()
+    
+    private var gameBrain: GameBrain?
+    
     private var player: AVAudioPlayer?
     var totalTime = 30
     var timer = Timer()
@@ -25,7 +27,15 @@ class GamePlayController: UIViewController {
         setup()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        newGameOrContinue()
+    }
+    
     private func setup() {
+        
+        newGameOrContinue()
         
         addTargetForAnswerButtons()
         addTargetForClueButtons()
@@ -34,6 +44,12 @@ class GamePlayController: UIViewController {
         
         updateUI()
         
+    }
+    
+    private func newGameOrContinue() {
+        if gameBrain == nil {
+            gameBrain = GameBrain()
+        }
     }
     
     private func setupShowTableResult() {
@@ -46,10 +62,10 @@ class GamePlayController: UIViewController {
         gamePlayView.timerView.timerLabel.text = "\(self.totalTime)"
         let buttons = gamePlayView.containerAnswerButton.answerButtons
         buttons.enumerated().forEach { index, button in
-            let answer = gameBrain.getAnswer(index)
+            let answer = gameBrain!.getAnswer(index) // Force-unwrap
             button.setTitle(answer, for: .normal)
             button.setBackgroundImage(UIImage(named: R.Images.AnswerButton.blue), for: .normal)
-            gamePlayView.configureQiestionLabel(gameBrain.getQuestion())
+            gamePlayView.configureQiestionLabel(gameBrain!.getQuestion()) // Force-unwrap
         }
         playSong(song: "waitForResponse")
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
@@ -71,9 +87,10 @@ class GamePlayController: UIViewController {
     }
     
     @objc func showTableResult(_ sender: UIButton) {
-        let resultVC = PrizeTableConroller()
-        resultVC.brain = gameBrain
-        navigationController?.pushViewController(resultVC, animated: true)
+        let prizeTableVC = PrizeTableConroller()
+        prizeTableVC.delegate = self
+        prizeTableVC.brain = gameBrain
+        navigationController?.pushViewController(prizeTableVC, animated: true)
     }
     
     @objc func answerButtonPressed(_ sender: UIButton) {
@@ -83,13 +100,13 @@ class GamePlayController: UIViewController {
         sender.setBackgroundImage(UIImage(named: R.Images.AnswerButton.yellow), for: .normal)
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
             guard let self = self else { return }
-            if self.gameBrain.checkAnswer(sender.currentTitle) {
+            if self.gameBrain!.checkAnswer(sender.currentTitle) {  // Force-unwrap
                 // верный ответ
-                self.gameBrain.didCorrectAnswer()
+                self.gameBrain!.didCorrectAnswer() // Force-unwrap
                 
                 self.playSong(song: "correctAnswer")
                 sender.setBackgroundImage(UIImage(named: R.Images.AnswerButton.green), for: .normal)
-                self.gameBrain.nextQuestion()
+                self.gameBrain!.nextQuestion() // Force-unwrap
                 Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.updateUI), userInfo: nil, repeats: false)
                 
             } else {
@@ -103,8 +120,8 @@ class GamePlayController: UIViewController {
     @objc func gameOverScreen() {
         let vc = GameOverViewController()
         vc.navigationItem.hidesBackButton = true
-        vc.gameOverView.levelLabel.text = "Уровень \(gameBrain.getScore())"
-        vc.gameOverView.winningAmountLabel.text = gameBrain.getSum()
+        vc.gameOverView.levelLabel.text = "Уровень \(gameBrain!.getScore())" // Force-unwrap
+        vc.gameOverView.winningAmountLabel.text = gameBrain!.getSum() // Force-unwrap
         show(vc, sender: nil)
         timer.invalidate()
     }
@@ -115,12 +132,12 @@ class GamePlayController: UIViewController {
             sender.setBackgroundImage(UIImage(named: R.Images.UsedClueButton.usedFiftyFifty), for: .normal)
             sender.isEnabled = false
         } else if sender.currentBackgroundImage == UIImage(named: R.Images.ClueButton.helpAudience) {
-            let message = "Зал проголосовал за ответ \(gameBrain.getCurrentAnswer())"
+            let message = "Зал проголосовал за ответ \(gameBrain!.getCurrentAnswer())" // Force-unwrap
             alert(title: "Помощь зала", message: message)
             sender.setBackgroundImage(UIImage(named: R.Images.UsedClueButton.usedHelpAudience), for: .normal)
             sender.isEnabled = false
         } else {
-            let message = "Ваш друг считает что правильный ответ \(gameBrain.getCurrentAnswer())"
+            let message = "Ваш друг считает что правильный ответ \(gameBrain!.getCurrentAnswer())" // Force-unwrap
             alert(title: "Звонок другу", message: message)
             sender.setBackgroundImage(UIImage(named: R.Images.UsedClueButton.usedCallFriend), for: .normal)
             sender.isEnabled = false
@@ -154,5 +171,11 @@ class GamePlayController: UIViewController {
             timer.invalidate()
             gameOverScreen()
         }
+    }
+}
+
+extension GamePlayController: PrizeTableConrollerDelegate {
+    func changeGameBrain(_ brain: GameBrain?) {
+        gameBrain = brain
     }
 }
