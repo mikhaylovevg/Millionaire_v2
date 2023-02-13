@@ -7,13 +7,15 @@
 
 import UIKit
 
-class GameResultView: UIView {
+class PrizeTableView: UIView {
     
-    let leftAndRightOffset: CGFloat = 30
-    let topAndBottomOffset: CGFloat = 16
+    private let leftAndRightOffset: CGFloat = 30
+    private let topAndBottomOffset: CGFloat = 16
+    
+    // TODO: Сделать кнопку забрать деньги
     
     private let backgroundImageView = UIImageView()
-    private let resultContainerView = PrizeTableView()
+    private let resultContainerView = PrizeContainerView()
 
     init() {
         super.init(frame: .zero)
@@ -24,12 +26,12 @@ class GameResultView: UIView {
     
     /// задает текст элемента таблицы результатов по индексу от 0 - 14
     func configereResultTable(for index: Int, text: String) {
-        resultContainerView.configureResultTitle(index, text)
+//        resultContainerView.configureResultTitle(index, text)
     }
     
     /// задает цвет элемента таблицы результатов по индексу от 0 - 14
     func configureResultTable(for index: Int,and color: ColorPrize) {
-        resultContainerView.configureResult(index: index, color: color)
+//        resultContainerView.configureResult(index: index, color: color)
     }
     
     

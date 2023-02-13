@@ -9,7 +9,7 @@ import UIKit
 
 class PrizeTableConroller: UIViewController {
     
-    let gameResultView = GameResultView()
+    let gameResultView = PrizeTableView()
     var questions: [Question]?
 
     override func viewDidLoad() {
