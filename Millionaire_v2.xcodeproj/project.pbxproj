@@ -227,7 +227,7 @@
 		6C24AB2929963AA1004CC605 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6C46446C2998BC6B00489B27 /* GameResultView */,
+				6C46446C2998BC6B00489B27 /* PrizeTableView */,
 				00898E3E2997F1870022EFDF /* MainScreenView */,
 				10E4A3E1299657210010A3A7 /* GamePlayView */,
 				0086989B2996C10100203CC0 /* GameOverView */,
@@ -261,13 +261,13 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
-		6C46446C2998BC6B00489B27 /* GameResultView */ = {
+		6C46446C2998BC6B00489B27 /* PrizeTableView */ = {
 			isa = PBXGroup;
 			children = (
 				10DAB3C12998E888006F1B8F /* View */,
 				6C46446D2998BD0000489B27 /* PrizeTableView.swift */,
 			);
-			path = GameResultView;
+			path = PrizeTableView;
 			sourceTree = "<group>";
 		};
 		6C4644752998BDCE00489B27 /* GameResultController */ = {

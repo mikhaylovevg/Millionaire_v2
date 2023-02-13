@@ -9,13 +9,18 @@ import UIKit
 
 class PrizeTableView: UIView {
     
+    private let heightCont: CGFloat = 81
+    private let widthButton: CGFloat = 105
+    
     private let leftAndRightOffset: CGFloat = 30
     private let topAndBottomOffset: CGFloat = 16
     
-    // TODO: Сделать кнопку забрать деньги
+    private let containerForButton = UIView()
+    let takeMoneyButton = UIButton(type: .system)
     
     private let backgroundImageView = UIImageView()
     private let prizeContainerView = PrizeContainerView()
+    
     
     // MARK: - Init / setup
 
@@ -23,6 +28,8 @@ class PrizeTableView: UIView {
         super.init(frame: .zero)
         
         setupBackgroundImageView()
+        setupContainerForButton()
+        setupTakeMoneyButton()
         setupPrizeContainerView()
     }
     
@@ -52,7 +59,34 @@ class PrizeTableView: UIView {
             prizeContainerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: topAndBottomOffset),
             prizeContainerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: leftAndRightOffset),
             prizeContainerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -leftAndRightOffset),
-            prizeContainerView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -topAndBottomOffset)
+            prizeContainerView.bottomAnchor.constraint(equalTo: containerForButton.topAnchor, constant: -topAndBottomOffset)
+        ])
+    }
+    
+    private func setupContainerForButton() {
+        containerForButton.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(containerForButton)
+        
+        NSLayoutConstraint.activate([
+            containerForButton.heightAnchor.constraint(equalToConstant: heightCont),
+            containerForButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            containerForButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            containerForButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -topAndBottomOffset)
+        ])
+    }
+    
+    private func setupTakeMoneyButton() {
+        takeMoneyButton.translatesAutoresizingMaskIntoConstraints = false
+        let image = UIImage(named: R.Images.ClueButton.callFriend)
+        takeMoneyButton.setBackgroundImage(image, for: .normal)
+        
+        containerForButton.addSubview(takeMoneyButton)
+        
+        NSLayoutConstraint.activate([
+            takeMoneyButton.heightAnchor.constraint(equalTo: containerForButton.heightAnchor),
+            takeMoneyButton.widthAnchor.constraint(equalToConstant: widthButton),
+            takeMoneyButton.centerXAnchor.constraint(equalTo: containerForButton.centerXAnchor),
+            takeMoneyButton.centerYAnchor.constraint(equalTo: containerForButton.centerYAnchor)
         ])
     }
     

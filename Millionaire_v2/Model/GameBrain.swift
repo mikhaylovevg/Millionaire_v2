@@ -13,7 +13,7 @@ struct GameBrain {
     private var userMoney = 0
     
     // несгораеммые суммы
-    private let fireproofMoney: [Int] = [1000, 32_000, 1_000_000]
+    private let fireproofMoney: [Int] = [1000, 32_000, 1000_000]
     
     var quiz = Source().getQuestion()
     
@@ -33,6 +33,10 @@ struct GameBrain {
             return fireproofMoney[2]
         default: return 0
         }
+    }
+    
+    func isFireproofMoney(_ costQuestion: Int) -> Bool {
+        fireproofMoney.contains(costQuestion)
     }
     
     func getAnswer(_ indexButton: Int) -> String {
@@ -57,6 +61,10 @@ struct GameBrain {
     
     func getScore() -> String {
         return "\(score)"
+    }
+    
+    func getScore() -> Int {
+        return score
     }
     
     func getSum() -> String {

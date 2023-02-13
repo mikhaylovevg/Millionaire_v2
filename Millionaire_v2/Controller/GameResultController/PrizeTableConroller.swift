@@ -9,32 +9,42 @@ import UIKit
 
 class PrizeTableConroller: UIViewController {
     
-    private let gameResultView = PrizeTableView()
+    private let prizeTableView = PrizeTableView()
+//    private let gameBrain = GameBrain()
     
     var brain: GameBrain?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view = gameResultView
+        view = prizeTableView
+        addTargetTakeMoneyButton()
         starsSetup()
     }
     
     private func starsSetup() {
-        
-        let testColor: [ColorPrize] = [.violet, .yellow, .green]
-        var cost = 100
+        guard let gameBrain = brain else { return }
+        let quiz = gameBrain.quiz
         
         for i in 0..<15 {
-            let randomInt = Int.random(in: 0..<testColor.count)
-
-            gameResultView.configureNumberQuestion(by: i, to: i + 1)
-            gameResultView.configureImageQuestion(by: i, to: testColor[randomInt])
-            gameResultView.configureCostQuestion(by: i, to: cost)
+            prizeTableView.configureNumberQuestion(by: i, to: i + 1)
+            prizeTableView.configureCostQuestion(by: i, to: quiz[i].cost)
             
-            print("cost: \(cost), index: \(i)")
-            cost += cost * 2
+            if quiz[i].isAnswered {
+                prizeTableView.configureImageQuestion(by: i, to: .green)
+            } else if gameBrain.getScore() == i {
+                prizeTableView.configureImageQuestion(by: i, to: .yellow)
+            } else if gameBrain.isFireproofMoney(quiz[i].cost) {
+                prizeTableView.configureImageQuestion(by: i, to: .blue)
+            }
         }
+    }
     
+    private func addTargetTakeMoneyButton() {
+        prizeTableView.takeMoneyButton.addTarget(self, action: #selector(takeMoney), for: .touchUpInside)
+    }
+    
+    @objc func takeMoney() {
+        print("takeMoney")
     }
 }
