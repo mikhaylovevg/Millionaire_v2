@@ -22,28 +22,26 @@ class GamePlayController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.navigationBar.isHidden = true
         view = gamePlayView
         setup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateUI()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         newGameOrContinue()
     }
     
     private func setup() {
-        
         newGameOrContinue()
         
         addTargetForAnswerButtons()
         addTargetForClueButtons()
-        
-        setupShowTableResult()
-        
-        updateUI()
-        
     }
     
     private func newGameOrContinue() {
@@ -51,14 +49,8 @@ class GamePlayController: UIViewController {
             gameBrain = GameBrain()
         }
     }
-    
-    private func setupShowTableResult() {
-        let image = UIImage(systemName: "dollarsign.circle.fill")
-        rightNavBarButton = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(showTableResult))
-        navigationItem.setRightBarButton(rightNavBarButton, animated: true)
-    }
-    
-    @objc private func updateUI() {
+
+    func updateUI() {
         gamePlayView.timerView.timerLabel.text = "\(self.totalTime)"
         let buttons = gamePlayView.containerAnswerButton.answerButtons
         buttons.enumerated().forEach { index, button in
@@ -86,7 +78,7 @@ class GamePlayController: UIViewController {
         }
     }
     
-    @objc func showTableResult(_ sender: UIButton) {
+    @objc func showTableResult() {
         let prizeTableVC = PrizeTableConroller()
         prizeTableVC.delegate = self
         prizeTableVC.brain = gameBrain
@@ -107,7 +99,7 @@ class GamePlayController: UIViewController {
                 self.playSong(song: "correctAnswer")
                 sender.setBackgroundImage(UIImage(named: R.Images.AnswerButton.green), for: .normal)
                 self.gameBrain!.nextQuestion() // Force-unwrap
-                Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.updateUI), userInfo: nil, repeats: false)
+                Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.showTableResult), userInfo: nil, repeats: false)
                 
             } else {
                 self.playSong(song: "wrongAnswer")

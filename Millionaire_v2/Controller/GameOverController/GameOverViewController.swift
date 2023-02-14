@@ -13,6 +13,7 @@ class GameOverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = true
         view = gameOverView
         newGameButtonTarget()
         mainScreenButtonTarget()
@@ -28,14 +29,11 @@ class GameOverViewController: UIViewController {
     
     @objc private func newGameButtonTapped() {
         let vc = GamePlayController()
-        vc.navigationItem.hidesBackButton = true
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func mainScreenButtonTapped() {
-        let vc = MainScreenViewController()
-        vc.navigationItem.hidesBackButton = true
-        navigationController?.pushViewController(vc, animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
     
 }

@@ -14,7 +14,7 @@ class MainScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = mainScreenView
-        
+        navigationController?.navigationBar.isHidden = true
         rulesGameButtonTarget()
         startGameButtonTarget()
     }
