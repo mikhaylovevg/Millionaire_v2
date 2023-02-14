@@ -115,7 +115,6 @@ class GamePlayController: UIViewController {
     
     @objc func gameOverScreen() {
         let vc = GameOverViewController()
-        vc.navigationItem.hidesBackButton = true
         vc.configureWinLabel(gameBrain!.getUserMoney()) // Force-unwrap
         vc.configureLevelLabel(gameBrain!.getScore()) // Force-unwrap
         show(vc, sender: nil)

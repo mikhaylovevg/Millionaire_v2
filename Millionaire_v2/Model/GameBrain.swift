@@ -35,6 +35,10 @@ struct GameBrain {
         }
     }
     
+    func takeMoney() -> Int {
+        return userMoney
+    }
+    
     func isFireproofMoney(_ costQuestion: Int) -> Bool {
         fireproofMoney.contains(costQuestion)
     }

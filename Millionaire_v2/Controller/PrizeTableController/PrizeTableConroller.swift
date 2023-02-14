@@ -61,6 +61,13 @@ class PrizeTableConroller: UIViewController {
     }
     
     @objc func takeMoneyPressed() {
-        print("takeMoneyPressed")
+        let vc = GameOverViewController()
+        if let brain = brain {
+            vc.configureLevelLabel(brain.getScore())
+            vc.configureWinLabel(brain.takeMoney())
+            show(vc, sender: nil)
+        } else {
+            print("Wrong! - takeMoneyPressed")
+        }
     }
 }
