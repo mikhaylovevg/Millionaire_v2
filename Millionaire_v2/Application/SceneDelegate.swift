@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let startVC = MainScreenViewController()
         let navController = UINavigationController(rootViewController: startVC)
 //        window?.rootViewController = PrizeTableConroller()
-//        window?.rootViewController = TestViewController()
+//        window?.rootViewController = RulsController()
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
     }

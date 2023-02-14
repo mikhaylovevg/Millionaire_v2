@@ -22,7 +22,7 @@ class GamePlayController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
+
         view = gamePlayView
         setup()
     }

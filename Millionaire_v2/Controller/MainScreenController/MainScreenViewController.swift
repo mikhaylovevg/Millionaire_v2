@@ -28,7 +28,8 @@ class MainScreenViewController: UIViewController {
     }
     
     @objc private func rulesGameButtonTapped() {
-        print("rulesGameButtonTapped")
+        let rulsVC = RulsController()
+        navigationController?.pushViewController(rulsVC, animated: true)
     }
     
     @objc private func startGameButtonTapped() {

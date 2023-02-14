@@ -13,7 +13,7 @@ class GameOverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
+
         view = gameOverView
         newGameButtonTarget()
         mainScreenButtonTarget()
