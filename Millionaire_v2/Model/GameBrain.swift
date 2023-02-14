@@ -81,7 +81,7 @@ struct GameBrain {
     }
     
     mutating private func increaseUserMoney() {
-        userMoney += quiz[score].cost
+        userMoney = quiz[score].cost
     }
     
     mutating func nextQuestion() {

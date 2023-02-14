@@ -63,15 +63,20 @@ class GamePlayController: UIViewController {
     
     private func isInterface(_ locked: Bool ) {
         let buttons = gamePlayView.containerAnswerButton.answerButtons
+        let clueButtons = gamePlayView.containerClueView
         
         if locked {
             buttons.forEach {
                 $0.isEnabled = false
             }
+            clueButtons.isUserInteractionEnabled = false
+            clueButtons.alpha = 0.5
         } else {
             buttons.forEach {
                 $0.isEnabled = true
             }
+            clueButtons.isUserInteractionEnabled = true
+            clueButtons.alpha = 1.0
         }
     }
     
