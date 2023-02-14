@@ -90,8 +90,11 @@ class GamePlayController: UIViewController {
         totalTime = 30
         playSong(song: "waitForInspection")
         sender.setBackgroundImage(UIImage(named: R.Images.AnswerButton.yellow), for: .normal)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            
             guard let self = self else { return }
+            
             if self.gameBrain!.checkAnswer(sender.currentTitle) {  // Force-unwrap
                 // верный ответ
                 self.gameBrain!.didCorrectAnswer() // Force-unwrap
@@ -99,6 +102,7 @@ class GamePlayController: UIViewController {
                 self.playSong(song: "correctAnswer")
                 sender.setBackgroundImage(UIImage(named: R.Images.AnswerButton.green), for: .normal)
                 self.gameBrain!.nextQuestion() // Force-unwrap
+                
                 Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.showTableResult), userInfo: nil, repeats: false)
                 
             } else {
@@ -112,8 +116,8 @@ class GamePlayController: UIViewController {
     @objc func gameOverScreen() {
         let vc = GameOverViewController()
         vc.navigationItem.hidesBackButton = true
-        vc.gameOverView.levelLabel.text = "Уровень \(gameBrain!.getScore())" // Force-unwrap
-        vc.gameOverView.winningAmountLabel.text = gameBrain!.getSum() // Force-unwrap
+        vc.configureWinLabel(gameBrain!.getUserMoney()) // Force-unwrap
+        vc.configureLevelLabel(gameBrain!.getScore()) // Force-unwrap
         show(vc, sender: nil)
         timer.invalidate()
     }

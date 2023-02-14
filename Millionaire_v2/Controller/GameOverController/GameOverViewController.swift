@@ -19,6 +19,14 @@ class GameOverViewController: UIViewController {
         mainScreenButtonTarget()
     }
     
+    func configureWinLabel(_ prize: Int) {
+        gameOverView.winningAmountLabel.text = "💰 \(prize)"
+    }
+    
+    func configureLevelLabel(_ level: Int) {
+        gameOverView.levelLabel.text = "Уровень \(level)"
+    }
+    
     private func newGameButtonTarget() {
         gameOverView.newGameButton.addTarget(self, action: #selector(newGameButtonTapped), for: .touchUpInside)
     }

@@ -67,20 +67,17 @@ struct GameBrain {
         return score
     }
     
-    func getSum() -> String {
-        if score == 0 {
-            return "💰0 рублей"
-        } else {
-            return "\(quiz[score - 1].cost)"
-        }
-    }
-    
-    func checkAnswer(_ userAnswer: String?) -> Bool {
+    mutating func checkAnswer(_ userAnswer: String?) -> Bool {
         if userAnswer == quiz[score].rightAnswer {
+            increaseUserMoney()
             return true
         } else {
             return false
         }
+    }
+    
+    mutating private func increaseUserMoney() {
+        userMoney += quiz[score].cost
     }
     
     mutating func nextQuestion() {
