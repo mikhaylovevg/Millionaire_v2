@@ -37,12 +37,24 @@ class PrizeTableConroller: UIViewController {
             
             if quiz[i].isAnswered {
                 prizeTableView.configureImageQuestion(by: i, to: .green)
+                if i == 14 {
+                    alert(title: "Поздравляем!", message: "Вы выйграли 1 000 000 рублей!!!")
+                }
             } else if gameBrain.getScore() == i {
                 prizeTableView.configureImageQuestion(by: i, to: .yellow)
             } else if gameBrain.isFireproofMoney(quiz[i].cost) {
                 prizeTableView.configureImageQuestion(by: i, to: .blue)
             }
         }
+    }
+    
+    private func alert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Главная", style: .destructive) { _ in
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
     
     private func addTargetContinueGameButton() {
