@@ -63,6 +63,25 @@ struct GameBrain {
         return quiz[score].rightAnswer
     }
     
+    func getClueFiftyFifty() -> [String] {
+        var inCorrectAnswerArray: [String] = []
+        var finalyArray: [String] = []
+        let answersArray = quiz[score].answers
+        let rightAnswer = quiz[score].rightAnswer
+        
+        for i in answersArray {
+            if i == rightAnswer {
+                continue
+            } else {
+                inCorrectAnswerArray.append(i)
+            }
+        }
+        
+        finalyArray.append(rightAnswer)
+        finalyArray.append(inCorrectAnswerArray[Int.random(in: 0...inCorrectAnswerArray.count - 1)])
+        return finalyArray
+    }
+    
     func getScore() -> String {
         return "\(score)"
     }

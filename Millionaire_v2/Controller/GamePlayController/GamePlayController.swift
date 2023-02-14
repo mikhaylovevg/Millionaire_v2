@@ -54,6 +54,7 @@ class GamePlayController: UIViewController {
             let answer = gameBrain!.getAnswer(index) // Force-unwrap
             button.setTitle(answer, for: .normal)
             button.setBackgroundImage(UIImage(named: R.Images.AnswerButton.blue), for: .normal)
+            button.alpha = 1
             gamePlayView.configureQiestionLabel(gameBrain!.getQuestion()) // Force-unwrap
         }
         playSong(song: "waitForResponse")
@@ -147,7 +148,17 @@ class GamePlayController: UIViewController {
     
     @objc func clueButtonPressed(_ sender: UIButton) {
         if sender.currentBackgroundImage == UIImage(named: R.Images.ClueButton.fiftyFifty) {
-
+            let buttons = gamePlayView.containerAnswerButton.answerButtons
+            let answers = gameBrain!.getClueFiftyFifty()
+            
+            buttons.enumerated().forEach { index, button in
+                if button.currentTitle == answers[0] || button.currentTitle == answers[1] {
+                    button.alpha = 1
+                } else {
+                    button.alpha = 0
+                }
+            }
+            
             sender.setBackgroundImage(UIImage(named: R.Images.UsedClueButton.usedFiftyFifty), for: .normal)
             sender.isEnabled = false
         } else if sender.currentBackgroundImage == UIImage(named: R.Images.ClueButton.helpAudience) {
