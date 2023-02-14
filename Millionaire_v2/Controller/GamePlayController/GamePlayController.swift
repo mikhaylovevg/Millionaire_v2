@@ -30,11 +30,8 @@ class GamePlayController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateUI()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         newGameOrContinue()
+        isInterface(false)
     }
     
     private func setup() {
@@ -50,7 +47,7 @@ class GamePlayController: UIViewController {
         }
     }
 
-    func updateUI() {
+    private func updateUI() {
         gamePlayView.timerView.timerLabel.text = "\(self.totalTime)"
         let buttons = gamePlayView.containerAnswerButton.answerButtons
         buttons.enumerated().forEach { index, button in
@@ -62,6 +59,20 @@ class GamePlayController: UIViewController {
         playSong(song: "waitForResponse")
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         
+    }
+    
+    private func isInterface(_ locked: Bool ) {
+        let buttons = gamePlayView.containerAnswerButton.answerButtons
+        
+        if locked {
+            buttons.forEach {
+                $0.isEnabled = false
+            }
+        } else {
+            buttons.forEach {
+                $0.isEnabled = true
+            }
+        }
     }
     
     private func addTargetForAnswerButtons() {
@@ -86,12 +97,16 @@ class GamePlayController: UIViewController {
     }
     
     @objc func answerButtonPressed(_ sender: UIButton) {
+        
         timer.invalidate()
         totalTime = 30
+        
+        isInterface(true)
+        
         playSong(song: "waitForInspection")
         sender.setBackgroundImage(UIImage(named: R.Images.AnswerButton.yellow), for: .normal)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
             
             guard let self = self else { return }
             
@@ -115,9 +130,13 @@ class GamePlayController: UIViewController {
     
     @objc func gameOverScreen() {
         let vc = GameOverViewController()
-        vc.configureWinLabel(gameBrain!.getUserMoney()) // Force-unwrap
-        vc.configureLevelLabel(gameBrain!.getScore()) // Force-unwrap
-        show(vc, sender: nil)
+        if let brain = gameBrain {
+            vc.configureWinLabel(brain.getUserMoney())
+            vc.configureLevelLabel(brain.getScore())
+            show(vc, sender: nil)
+        } else {
+            print("Wrong! gameOverScreen")
+        }
         timer.invalidate()
     }
     
@@ -139,7 +158,7 @@ class GamePlayController: UIViewController {
         }
     }
     
-    func alert(title: String, message: String) {
+    private func alert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Хорошо", style: .default)
         alert.addAction(okAction)

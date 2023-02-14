@@ -16,7 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         // можно назначить свой ViewController с которым работаешь
-        let navController = UINavigationController(rootViewController: MainScreenViewController())
+        let startVC = MainScreenViewController()
+        let navController = UINavigationController(rootViewController: startVC)
 //        window?.rootViewController = PrizeTableConroller()
 //        window?.rootViewController = TestViewController()
         window?.rootViewController = navController
