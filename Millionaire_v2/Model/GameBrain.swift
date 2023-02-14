@@ -59,15 +59,14 @@ struct GameBrain {
         quiz[score].isAnswered = true
     }
     
-    func getCurrentAnswer() -> String {
+    func getCorrectAnswer() -> String {
         return quiz[score].rightAnswer
     }
     
-    func getClueFiftyFifty() -> [String] {
-        var inCorrectAnswerArray: [String] = []
-        var finalyArray: [String] = []
+    func getRandomIncorrectAnswer() -> String {
         let answersArray = quiz[score].answers
         let rightAnswer = quiz[score].rightAnswer
+        var inCorrectAnswerArray: [String] = []
         
         for i in answersArray {
             if i == rightAnswer {
@@ -77,9 +76,42 @@ struct GameBrain {
             }
         }
         
+        return inCorrectAnswerArray[Int.random(in: 0...inCorrectAnswerArray.count - 1)]
+    }
+    
+    func getClueFiftyFifty() -> [String] {
+        var finalyArray: [String] = []
+        let incorrectAnswer = self.getRandomIncorrectAnswer()
+        let rightAnswer = self.getCorrectAnswer()
         finalyArray.append(rightAnswer)
-        finalyArray.append(inCorrectAnswerArray[Int.random(in: 0...inCorrectAnswerArray.count - 1)])
+        finalyArray.append(incorrectAnswer)
         return finalyArray
+    }
+    
+    func getClueHallHelp() -> String {
+        let randomInt = Int.random(in: 1...100)
+        let incorrectAnswer = self.getRandomIncorrectAnswer()
+        let rightAnswer = self.getCorrectAnswer()
+        
+        switch randomInt {
+        case 1...70:
+            return rightAnswer
+        default:
+            return incorrectAnswer
+        }
+    }
+    
+    func getClueCallAFriend() -> String {
+        let randomInt = Int.random(in: 1...100)
+        let incorrectAnswer = self.getRandomIncorrectAnswer()
+        let rightAnswer = self.getCorrectAnswer()
+        
+        switch randomInt {
+        case 1...80:
+            return rightAnswer
+        default:
+            return incorrectAnswer
+        }
     }
     
     func getScore() -> String {

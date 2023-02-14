@@ -162,12 +162,12 @@ class GamePlayController: UIViewController {
             sender.setBackgroundImage(UIImage(named: R.Images.UsedClueButton.usedFiftyFifty), for: .normal)
             sender.isEnabled = false
         } else if sender.currentBackgroundImage == UIImage(named: R.Images.ClueButton.helpAudience) {
-            let message = "Зал проголосовал за ответ \(gameBrain!.getCurrentAnswer())" // Force-unwrap
+            let message = "Зал проголосовал за ответ \(gameBrain!.getClueHallHelp())" // Force-unwrap
             alert(title: "Помощь зала", message: message)
             sender.setBackgroundImage(UIImage(named: R.Images.UsedClueButton.usedHelpAudience), for: .normal)
             sender.isEnabled = false
         } else {
-            let message = "Ваш друг считает что правильный ответ \(gameBrain!.getCurrentAnswer())" // Force-unwrap
+            let message = "Ваш друг считает что правильный ответ \(gameBrain!.getClueCallAFriend())" // Force-unwrap
             alert(title: "Звонок другу", message: message)
             sender.setBackgroundImage(UIImage(named: R.Images.UsedClueButton.usedCallFriend), for: .normal)
             sender.isEnabled = false
