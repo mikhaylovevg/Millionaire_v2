@@ -12,9 +12,9 @@ class GamePlayController: UIViewController {
     
     private let gamePlayView = GamePlayView()
     
+    private var player = Player()
     private var gameBrain: GameBrain?
     
-    private var player: AVAudioPlayer?
     var totalTime = 30
     var timer = Timer()
     
@@ -57,7 +57,7 @@ class GamePlayController: UIViewController {
             button.alpha = 1
             gamePlayView.configureQiestionLabel(gameBrain!.getQuestion()) // Force-unwrap
         }
-        playSong(song: "waitForResponse")
+        player.playSound(resource: "waitForResponse")
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         
     }
@@ -108,8 +108,7 @@ class GamePlayController: UIViewController {
         totalTime = 30
         
         isInterface(true)
-        
-        playSong(song: "waitForInspection")
+        player.playSound(resource: "waitForInspection")
         sender.setBackgroundImage(UIImage(named: R.Images.AnswerButton.yellow), for: .normal)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
@@ -120,14 +119,14 @@ class GamePlayController: UIViewController {
                 // верный ответ
                 self.gameBrain!.didCorrectAnswer() // Force-unwrap
                 
-                self.playSong(song: "correctAnswer")
+                self.player.playSound(resource: "correctAnswer")
                 sender.setBackgroundImage(UIImage(named: R.Images.AnswerButton.green), for: .normal)
                 self.gameBrain!.nextQuestion() // Force-unwrap
                 
                 Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.showTableResult), userInfo: nil, repeats: false)
                 
             } else {
-                self.playSong(song: "wrongAnswer")
+                self.player.playSound(resource: "wrongAnswer")
                 sender.setBackgroundImage(UIImage(named: R.Images.AnswerButton.red), for: .normal)
                 Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.gameOverScreen), userInfo: nil, repeats: false)
             }
@@ -179,18 +178,6 @@ class GamePlayController: UIViewController {
         let okAction = UIAlertAction(title: "Хорошо", style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)
-    }
-    
-    private func playSong(song: String) {
-        guard let url = Bundle.main.url(forResource: song, withExtension: "mp3") else { return }
-        
-        do {
-            player = try AVAudioPlayer(contentsOf: url)
-            guard let player = player else { return }
-            player.play()
-        } catch let error {
-            print(error.localizedDescription)
-        }
     }
     
     @objc func updateTime() {

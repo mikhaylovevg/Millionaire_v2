@@ -14,6 +14,7 @@ protocol PrizeTableConrollerDelegate {
 class PrizeTableConroller: UIViewController {
     
     private let prizeTableView = PrizeTableView()
+    private var player = Player()
     var delegate: PrizeTableConrollerDelegate?
     
     var brain: GameBrain?
@@ -38,7 +39,11 @@ class PrizeTableConroller: UIViewController {
             if quiz[i].isAnswered {
                 prizeTableView.configureImageQuestion(by: i, to: .green)
                 if i == 14 {
-                    alert(title: "Поздравляем!", message: "Вы выйграли 1 000 000 рублей!!!")
+                    player.playSound(resource: "victoryMillion")
+                    prizeTableView.isUserInteractionEnabled = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                        self.alert(title: "Поздравляем!", message: "Вы выйграли 1 000 000 рублей!!!")
+                    }
                 }
             } else if gameBrain.getScore() == i {
                 prizeTableView.configureImageQuestion(by: i, to: .yellow)
